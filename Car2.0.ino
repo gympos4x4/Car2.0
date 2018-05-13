@@ -23,6 +23,7 @@ void loop() {
 	SpektrumRC.loop();
 	Lights.loop();
 	TiltAlarm.loop();
+	updateCarData();
 	#ifdef DEBUG
 	sendDebugSerial();
 	#endif
@@ -31,10 +32,12 @@ void loop() {
 }
 
 void sendDebugSerial() {
+	Serial.println(millis());
 	Serial.print("battery_percentage=");Serial.println(cardata.battery_percentage);
 	Serial.print("tilt.tilted=");Serial.println(cardata.tilt.tilted);
 	Serial.print("tilt.degrees=");Serial.println(cardata.tilt.degrees);
 	Serial.print("lights.is_below_threshold=");Serial.println(cardata.lights.is_below_threshold);
+	Serial.print("lights.level=");Serial.println(cardata.lights.level);
 	Serial.print("rc.throttle=");Serial.println(cardata.rc.throttle);
 	Serial.print("rc.steer=");Serial.println(cardata.rc.steer);
 }

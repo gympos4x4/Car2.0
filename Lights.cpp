@@ -18,12 +18,14 @@ void _Lights::loop() {
 }
 
 bool _Lights::isBelowThreshold() {
-	return analogRead(LI_SENSOR_PIN) < LI_TRESHOLD; // returns true if light level is below treshold value
+	lightLevel = analogRead(LI_SENSOR_PIN);
+	return lightLevel < LI_TRESHOLD; // returns true if light level is below treshold value
 }
 
 void _Lights::updateCarData(class CarData& cardata)
 {
 	cardata.lights.is_below_threshold = isBelowThreshold();
+	cardata.lights.level = lightLevel;
 }
 
 void _Lights::setFront(bool state)
