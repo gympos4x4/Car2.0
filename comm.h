@@ -19,6 +19,7 @@ struct CarData
 	struct
 	{
 		bool is_below_threshold;
+		int16_t level;
 	} lights;
 
 	//RemoteControl

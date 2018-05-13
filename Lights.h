@@ -20,7 +20,7 @@
 
 class _Lights {
 
-	bool lastCheck;
+	int16_t lightLevel;
 
 public:
 	_Lights() {}
