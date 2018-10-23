@@ -11,11 +11,8 @@
 #endif
 
 #include "comm.h"
+#include "pindef.h"
 
-#define LI_SENSOR_PIN A0
-#define LI_FRONT_PIN 0
-#define LI_REAR_PIN 6
-#define LI_REVERSE_PIN 7
 #define LI_TRESHOLD 36 // turn on lights below this value
 
 class _Lights {
@@ -32,8 +29,14 @@ public:
 	void loop();
 
 	void setFront(bool state);
+
 	void setRear(bool state);
-	void setSide(bool state);
+
+	void setReverse(bool state);
+
+	void setLeft(bool state);
+
+	void setRight(bool state);
 
 	bool isBelowThreshold();
 

@@ -10,8 +10,9 @@
 #include "WProgram.h"
 #endif
 
-#define SR_STR_PIN 7
-#define SR_THR_PIN 8
+#include "comm.h"
+#include "pindef.h"
+
 #define SR_STR_MIN 990
 #define SR_STR_DMIN 1474
 #define SR_STR_DMAX 1481
@@ -20,8 +21,6 @@
 #define SR_THR_DMIN 1498
 #define SR_THR_DMAX 1507
 #define SR_THR_MAX 1890
-
-#include "comm.h"
 
 class _SpektrumRC {
 

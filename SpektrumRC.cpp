@@ -6,12 +6,12 @@
 _SpektrumRC SpektrumRC;
 
 void _SpektrumRC::init() {
-	pinMode(SR_THR_PIN, INPUT);
-	pinMode(SR_STR_PIN, INPUT);
+	pinMode(THRI_PIN, INPUT);
+	pinMode(STRI_PIN, INPUT);
 }
 
 int8_t _SpektrumRC::getThrottle() {
-	uint64_t val = pulseIn(SR_THR_PIN, HIGH, 20000);
+	uint64_t val = pulseIn(THRI_PIN, HIGH, 20000);
 	if (val < SR_THR_DMIN) {
 		return map(val, SR_THR_MIN, SR_THR_DMIN, INT8_MIN, 0);
 	} else if (val < SR_THR_DMAX) {
@@ -22,7 +22,7 @@ int8_t _SpektrumRC::getThrottle() {
 }
 
 int8_t _SpektrumRC::getSteer() {
-	uint64_t val = pulseIn(SR_STR_PIN, HIGH, 20000);
+	uint64_t val = pulseIn(STRI_PIN, HIGH, 20000);
 	if (val < SR_STR_DMIN) {
 		return map(val, SR_STR_MIN, SR_STR_DMIN, INT8_MIN, 0);
 	} else if (val < SR_STR_DMAX) {
