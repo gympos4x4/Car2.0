@@ -27,6 +27,11 @@ struct CarData
 		int8_t throttle;
 		int8_t steer;
 	} rc;
+
+	//ParkingSensors
+	struct {
+		//int16_t sensor_data[8];
+	} parking;
 };
 
 #endif /* COMM_H_ */

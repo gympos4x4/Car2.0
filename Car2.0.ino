@@ -1,41 +1,73 @@
+#include "ESP8266.h"
 // Car2.0.ino
 // Author: Juraj Marcin
 
 #define DEBUG
+#define SEND_INTERVAL 500
 
+#include "ESP8266.h"
 #include "SpektrumRC.h"
 #include "TiltAlarm.h"
 #include "Lights.h"
+#include "ParkingSensors.h"
 
 CarData cardata;
 
+uint64_t lastDataSend = 0;
+
 void setup() {
-	SpektrumRC.init();
-	Lights.init();
-	TiltAlarm.init();
-	
 	#ifdef DEBUG
 	Serial.begin(9600);
-	#endif
+	#endif // DEBUG
+	#ifdef DEBUG
+	Serial.println("Booting...");
+	#endif // DEBUG
+	pinMode(SPKR_PIN, OUTPUT);
+	digitalWrite(SPKR_PIN, HIGH);
+	delay(400);
+	digitalWrite(SPKR_PIN, LOW);
+	ESP8266.init();
+	Lights.init();
+	TiltAlarm.init();
+	SpektrumRC.init();
+	//ParkingSensors.init();
+	
+	digitalWrite(SPKR_PIN, HIGH);
+	delay(200);
+	digitalWrite(SPKR_PIN, LOW);
+	delay(200);
+	digitalWrite(SPKR_PIN, HIGH);
+	delay(200);
+	digitalWrite(SPKR_PIN, LOW);
+	#ifdef DEBUG
+	Serial.println("Booted!");
+	#endif // DEBUG
 }
 
 void loop() {
-	SpektrumRC.loop();
 	Lights.loop();
 	TiltAlarm.loop();
+	SpektrumRC.loop();
+	//ParkingSensors.loop();
+
+	if (millis() > lastDataSend + SEND_INTERVAL) {
+		ESP8266.sendCarData(&cardata);
+		lastDataSend = millis();
+	}
+
 	updateCarData();
 	#ifdef DEBUG
-	sendDebugSerial();
-	#endif
+	sendDebug();
+	#endif // DEBUG
 
 	delay(5);
 }
 
-void sendDebugSerial() {
+void sendDebug() {
 	Serial.println(millis());
 	Serial.print("battery_percentage=");Serial.println(cardata.battery_percentage);
-	Serial.print("tilt.tilted=");Serial.println(cardata.tilt.tilted);
 	Serial.print("tilt.degrees=");Serial.println(cardata.tilt.degrees);
+	Serial.print("tilt.tilted=");Serial.println(cardata.tilt.tilted);
 	Serial.print("lights.is_below_threshold=");Serial.println(cardata.lights.is_below_threshold);
 	Serial.print("lights.level=");Serial.println(cardata.lights.level);
 	Serial.print("rc.throttle=");Serial.println(cardata.rc.throttle);
@@ -43,7 +75,9 @@ void sendDebugSerial() {
 }
 
 void updateCarData() {
+	cardata.battery_percentage = (analogRead(VBAT_SENSE_PIN) - 700) / 2;
+	Lights.updateCarData(cardata);
+	//ParkingSensors.update_cardata(cardata);
 	SpektrumRC.updateCarData(cardata);
 	TiltAlarm.updateCarData(cardata);
-	Lights.updateCarData(cardata);
 }

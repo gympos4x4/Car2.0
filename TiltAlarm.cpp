@@ -6,7 +6,7 @@
 _TiltAlarm TiltAlarm;
 
 void _TiltAlarm::init() {
-	pinMode(TA_ALERT_PIN, OUTPUT);
+	pinMode(SPKR_PIN, OUTPUT);
 	Wire.begin();
 	Wire.beginTransmission(TA_MPU_ADDR);
 	Wire.write(TA_PWR_MGMT_1);  // PWR_MGMT_1 register
@@ -56,15 +56,15 @@ bool _TiltAlarm::check() {
 	return rotZ - TA_ALERT_OFFSET > TA_ALERT_ANGLE_POS || rotZ - TA_ALERT_OFFSET < TA_ALERT_ANGLE_NEG;
 }
 
-int _TiltAlarm::getAngle(int x, int z) {
+int16_t _TiltAlarm::getAngle(int16_t x, int16_t z) {
 	return degrees(atan2(z, x));
 }
 
 void _TiltAlarm::signal(bool value) {
-#ifdef TA_PIEZO_PIN
-	tone(TA_PIEZO_PIN, 440, 500);
+#ifdef PIEZO_PIN
+	tone(PIEZO_PIN, 440, 500);
 #else
-	digitalWrite(TA_ALERT_PIN, value);
+	digitalWrite(SPKR_PIN, value);
 #endif
 }
 
