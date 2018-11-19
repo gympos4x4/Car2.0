@@ -28,18 +28,20 @@
     <BootSegment>0</BootSegment>
     <ExternalProgrammingToolCommand />
     <AsfFrameworkConfig>
-      <framework-data xmlns="">
+      <framework-data>
         <options />
         <configurations />
         <files />
         <documentation help="" />
         <offline-documentation help="" />
         <dependencies>
-          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.27.3" />
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.34.1" />
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
     <preserveEEPROM>true</preserveEEPROM>
+    <ResetRule>0</ResetRule>
+    <EraseKey />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -56,7 +58,7 @@
     <ListValues>
       <Value>__AVR_ATmega2560__</Value>
       <Value>_VMDEBUG=1</Value>
-      <Value>ARDUINO=10805</Value>
+      <Value>ARDUINO=10807</Value>
       <Value>ARDUINO_MAIN</Value>
       <Value>F_CPU=16000000L</Value>
       <Value>__AVR__</Value>
@@ -67,16 +69,19 @@
   <avrgcc.compiler.directories.IncludePaths>
     <ListValues>
       <Value>../../../Car2.0</Value>
-      <Value>C:/Arduino/libraries</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/libraries</Value>
-      <Value>C:/Users/juraj/Documents/Arduino/libraries</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/variants/mega</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include/</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include/avr/</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.8.1/include</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.2/include</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.3/include</Value>
+      <Value>D:/Program Files (x86)/Arduino/libraries/Servo/src</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility</Value>
+      <Value>D:/Program Files (x86)/Arduino/libraries</Value>
+      <Value>D:/etc/Documents/Arduino/libraries</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/avr</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.2/include</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.3/include</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
   <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
@@ -91,7 +96,7 @@
     <ListValues>
       <Value>__AVR_ATmega2560__</Value>
       <Value>_VMDEBUG=1</Value>
-      <Value>ARDUINO=10805</Value>
+      <Value>ARDUINO=10807</Value>
       <Value>ARDUINO_MAIN</Value>
       <Value>F_CPU=16000000L</Value>
       <Value>__AVR__</Value>
@@ -102,16 +107,19 @@
   <avrgcccpp.compiler.directories.IncludePaths>
     <ListValues>
       <Value>../../../Car2.0</Value>
-      <Value>C:/Arduino/libraries</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/libraries</Value>
-      <Value>C:/Users/juraj/Documents/Arduino/libraries</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/variants/mega</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include/</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include/avr/</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.8.1/include</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.2/include</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.3/include</Value>
+      <Value>D:/Program Files (x86)/Arduino/libraries/Servo/src</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility</Value>
+      <Value>D:/Program Files (x86)/Arduino/libraries</Value>
+      <Value>D:/etc/Documents/Arduino/libraries</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/avr</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.2/include</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.3/include</Value>
     </ListValues>
   </avrgcccpp.compiler.directories.IncludePaths>
   <avrgcccpp.compiler.optimization.level>Optimize (-O1)</avrgcccpp.compiler.optimization.level>
@@ -133,7 +141,7 @@
   <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
 </AvrGccCpp>
     </ToolchainSettings>
-    <VMSETTING_IncludePaths>../../../Car2.0;C:/Arduino/libraries;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/libraries;C:/Users/juraj/Documents/Arduino/libraries;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/variants/standard;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include/;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include/avr/;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.8.1/include;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.2/include;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.3/include;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/libraries/Wire/src;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/libraries/Wire/src/utility;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/variants/mega;</VMSETTING_IncludePaths>
+    <VMSETTING_IncludePaths>../../../Car2.0;C:/Arduino/libraries;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/libraries;C:/Users/juraj/Documents/Arduino/libraries;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/variants/standard;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include/;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include/avr/;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.8.1/include;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.2/include;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.3/include;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/libraries/Wire/src;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/libraries/Wire/src/utility;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/variants/mega;D:/Program Files (x86)/Arduino/libraries;D:/etc/Documents/Arduino/libraries;D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries;D:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;D:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega;D:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include;D:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/avr;D:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include;D:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.2/include;D:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.3/include;D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src;D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility;D:/Program Files (x86)/Arduino/libraries/Servo/src;</VMSETTING_IncludePaths>
     <VisualMicroSettings>
       <VisualMicroSettings>
         <ValidatedAS7>1</ValidatedAS7>
@@ -181,16 +189,16 @@ menu.cpu.atmega1280.bootloader.extended_fuses=0xF5
 menu.cpu.atmega1280.bootloader.file=atmega/ATmegaBOOT_168_atmega1280.hex
 menu.cpu.atmega1280.build.mcu=atmega1280
 menu.cpu.atmega1280.build.board=AVR_MEGA
-runtime.ide.path=C:\Arduino
+runtime.ide.path=D:\Program Files (x86)\Arduino
 runtime.os=windows
-build.system.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.20\system
-runtime.ide.version=10805
+build.system.path=D:\Program Files (x86)\Arduino\hardware\arduino\avr\system
+runtime.ide.version=10807
 target_package=arduino
 target_platform=avr
-runtime.hardware.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\hardware\avr
+runtime.hardware.path=D:\Program Files (x86)\Arduino\hardware\arduino
 originalid=mega
 intellisense.tools.path={runtime.tools.avr-gcc.path}\
-intellisense.include.paths={intellisense.tools.path}avr\include\;{intellisense.tools.path}avr\include\avr\;{intellisense.tools.path}lib\gcc\avr\4.8.1\include;{intellisense.tools.path}lib\gcc\avr\4.9.2\include;{intellisense.tools.path}lib\gcc\avr\4.9.3\include
+intellisense.include.paths={intellisense.tools.path}avr\include;{intellisense.tools.path}avr\include\avr;{intellisense.tools.path}lib\gcc\avr\4.8.1\include;{intellisense.tools.path}lib\gcc\avr\4.9.2\include;{intellisense.tools.path}lib\gcc\avr\4.9.3\include;
 tools.atprogram.cmd.path=%AVRSTUDIO_EXE_PATH%\atbackend\atprogram
 tools.atprogram.cmd.setwinpath=true
 tools.atprogram.program.params.verbose=-v
@@ -202,7 +210,7 @@ tools.atprogram.erase.params.quiet=-q
 tools.atprogram.bootloader.params.verbose=-v
 tools.atprogram.bootloader.params.quiet=-q
 tools.atprogram.bootloader.pattern="{cmd.path}" -d {build.mcu} {bootloader.verbose}  program -c -f "{runtime.ide.path}\hardware\arduino\avr\bootloaders\{bootloader.file}"
-version=1.6.20
+version=1.6.23
 compiler.warning_flags=-w
 compiler.warning_flags.none=-w
 compiler.warning_flags.default=
@@ -215,7 +223,7 @@ compiler.c.elf.flags={compiler.warning_flags} -Os -g -flto -fuse-linker-plugin -
 compiler.c.elf.cmd=avr-gcc
 compiler.S.flags=-c -g -x assembler-with-cpp -flto -MMD
 compiler.cpp.cmd=avr-g++
-compiler.cpp.flags=-c -g -Os {compiler.warning_flags} -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -MMD -flto
+compiler.cpp.flags=-c -g -Os {compiler.warning_flags} -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto
 compiler.ar.cmd=avr-gcc-ar
 compiler.ar.flags=rcs
 compiler.objcopy.cmd=avr-objcopy
@@ -274,7 +282,7 @@ tools.avrdude_remote.upload.pattern=/usr/bin/run-avrdude /tmp/sketch.hex {upload
 tools.avrdude.upload.network_pattern="{network_cmd}" -address {serial.port} -port {upload.network.port} -sketch "{build.path}/{build.project_name}.hex" -upload {upload.network.endpoint_upload} -sync {upload.network.endpoint_sync} -reset {upload.network.endpoint_reset} -sync_exp {upload.network.sync_return}
 build.usb_manufacturer="Unknown"
 build.usb_flags=-DUSB_VID={build.vid} -DUSB_PID={build.pid} '-DUSB_MANUFACTURER={build.usb_manufacturer}' '-DUSB_PRODUCT={build.usb_product}'
-vm.platform.root.path=C:\Program Files (x86)\Atmel\Studio\7.0\Extensions\wsmezn1v.lxt\Micro Platforms\arduino16x
+vm.platform.root.path=D:\Program Files (x86)\Atmel\Studio\7.0\Extensions\ohs34rfx.2kx\Micro Platforms\arduino16x
 avrisp.name=AVR ISP
 avrisp.communication=serial
 avrisp.protocol=stk500v1
@@ -312,9 +320,9 @@ parallel.program.tool=avrdude
 parallel.program.extra_params=-F
 arduinoasisp.name=Arduino as ISP
 arduinoasisp.communication=serial
-arduinoasisp.protocol=stk500v1
+arduinoasisp.protocol=arduino
 arduinoasisp.speed=19200
-arduinoasisp.program.protocol=stk500v1
+arduinoasisp.program.protocol=arduino
 arduinoasisp.program.speed=19200
 arduinoasisp.program.tool=avrdude
 arduinoasisp.program.extra_params=-P{serial.port} -b{program.speed}
@@ -353,18 +361,13 @@ atmel_ice.protocol=atmelice_isp
 atmel_ice.program.protocol=atmelice_isp
 atmel_ice.program.tool=avrdude
 atmel_ice.program.extra_params=-Pusb
-runtime.tools.avr-gcc.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\tools\avr-gcc\4.9.2-atmel3.5.4-arduino2
-runtime.tools.avr-gcc-4.9.2-atmel3.5.4-arduino2.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\tools\avr-gcc\4.9.2-atmel3.5.4-arduino2
-runtime.tools.avrdude.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\tools\avrdude\6.3.0-arduino9
-runtime.tools.avrdude-6.3.0-arduino9.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\tools\avrdude\6.3.0-arduino9
-runtime.tools.arduinoOTA.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\tools\arduinoOTA\1.1.1
-runtime.tools.arduinoOTA-1.1.1.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\tools\arduinoOTA\1.1.1
-runtime.tools.esptool.path=C:\Users\juraj\AppData\Local\arduino15\packages\esp8266\tools\esptool\0.4.13
-runtime.tools.esptool-0.4.13.path=C:\Users\juraj\AppData\Local\arduino15\packages\esp8266\tools\esptool\0.4.13
-runtime.tools.mkspiffs.path=C:\Users\juraj\AppData\Local\arduino15\packages\esp8266\tools\mkspiffs\0.2.0
-runtime.tools.mkspiffs-0.2.0.path=C:\Users\juraj\AppData\Local\arduino15\packages\esp8266\tools\mkspiffs\0.2.0
-runtime.tools.xtensa-lx106-elf-gcc.path=C:\Users\juraj\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\1.20.0-26-gb404fb9-2
-runtime.tools.xtensa-lx106-elf-gcc-1.20.0-26-gb404fb9-2.path=C:\Users\juraj\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\1.20.0-26-gb404fb9-2
+runtime.tools.avr-gcc.path=D:\Program Files (x86)\Arduino\hardware\tools\avr
+runtime.tools.avr-gcc-5.4.0-atmel3.6.1-arduino2.path=D:\Program Files (x86)\Arduino\hardware\tools\avr
+runtime.tools.tools-avr.path=D:\Program Files (x86)\Arduino\hardware\tools\avr
+runtime.tools.avrdude.path=D:\Program Files (x86)\Arduino\hardware\tools\avr
+runtime.tools.avrdude-6.3.0-arduino14.path=D:\Program Files (x86)\Arduino\hardware\tools\avr
+runtime.tools.arduinoOTA.path=D:\Program Files (x86)\Arduino\hardware\tools\avr
+runtime.tools.arduinoOTA-1.2.1.path=D:\Program Files (x86)\Arduino\hardware\tools\avr
 upload.protocol=wiring
 upload.maximum_size=253952
 upload.speed=115200
@@ -375,19 +378,20 @@ build.mcu=atmega2560
 runtime.vm.boardinfo.id=mega_atmega2560
 runtime.vm.boardinfo.name=mega_atmega2560
 runtime.vm.boardinfo.desc=Arduino/Genuino Mega w/ ATmega2560 (Mega 2560)
-runtime.vm.boardinfo.src_location=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.20
+runtime.vm.boardinfo.src_location=D:\Program Files (x86)\Arduino\hardware\arduino\avr
 ide.hint=Use installed IDE. Provides built-in hardware, reference/help and libraries.
 ide.location.key=Arduino16x
 ide.location.ide.winreg=Arduino 1.6.x Application
 ide.location.sketchbook.winreg=Arduino 1.6.x Sketchbook
 ide.location.sketchbook.preferences=sketchbook.path
-ide.default.revision_name=1.8.0
+ide.default.revision_name=1.9.0
 ide.default.version=10800
 ide.default.package=arduino
 ide.default.platform=avr
 ide.multiplatform=true
 ide.includes=Arduino.h
 ide.exe_name=arduino
+ide.recipe.preproc.defines.flags=-w -x c++ -E -dM
 ide.platformswithoutpackage=false
 ide.includes.fallback=wprogram.h
 ide.extension=ino
@@ -419,21 +423,22 @@ ssh.user.default.password=arduino
 ssh.host.wwwfiles.path=/www/sd
 build.working_directory={runtime.ide.path}\java\bin
 ide.appid=arduino16x
-location.sketchbook=C:\Users\juraj\Documents\Arduino
-build.core.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.20\cores\arduino
-vm.core.include=Arduino.h
-vm.boardsource.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.20
-runtime.platform.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.20
+location.sketchbook=D:\etc\Documents\Arduino
+build.core.path=D:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino
+vm.core.include=arduino.h
+vm.boardsource.path=D:\Program Files (x86)\Arduino\hardware\arduino\avr
+runtime.platform.path=D:\Program Files (x86)\Arduino\hardware\arduino\avr
 vm.platformname.name=avr
 build.arch=AVR
 builder.noino=false
-build.architecture=4.9.2-atmel3.5.4-arduino2
-vmresolved.compiler.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\tools\avr-gcc\4.9.2-atmel3.5.4-arduino2\bin\
-vmresolved.tools.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\tools\avr-gcc\4.9.2-atmel3.5.4-arduino2
-build.path=C:\Users\juraj\AppData\Local\Temp\VMBuilds\Car2.0\mega_atmega2560\Debug
+build.architecture=avr
+vmresolved.compiler.path=D:\Program Files (x86)\Arduino\hardware\tools\avr\bin\
+vmresolved.tools.path=D:\Program Files (x86)\Arduino\hardware\tools\avr
 build.project_name=Car2.0.ino
-build.project_path=C:\var\arduino\Car2.0\Car2.0
-ProjectDir=C:\var\arduino\Car2.0\Car2.0\
+build.project_path=D:\Projects\Car2.0\Car2.0
+sketch_path=D:\Projects\Car2.0\Car2.0
+ProjectDir=D:\Projects\Car2.0\Car2.0\
+build.path=C:\Users\juraj\AppData\Local\Temp\VMBuilds\Car2.0\mega_atmega2560\Debug
 </arduino.board.property_bag>
         <arduino.build.mcu>atmega2560</arduino.build.mcu>
         <arduino.build.f_cpu>16000000L</arduino.build.f_cpu>
@@ -462,7 +467,7 @@ ProjectDir=C:\var\arduino\Car2.0\Car2.0\
     <ListValues>
       <Value>__AVR_ATmega2560__</Value>
       <Value>_VMDEBUG=1</Value>
-      <Value>ARDUINO=10805</Value>
+      <Value>ARDUINO=10807</Value>
       <Value>ARDUINO_MAIN</Value>
       <Value>F_CPU=16000000L</Value>
       <Value>__AVR__</Value>
@@ -473,16 +478,19 @@ ProjectDir=C:\var\arduino\Car2.0\Car2.0\
   <avrgcc.compiler.directories.IncludePaths>
     <ListValues>
       <Value>../../../Car2.0</Value>
-      <Value>C:/Arduino/libraries</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/libraries</Value>
-      <Value>C:/Users/juraj/Documents/Arduino/libraries</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/variants/mega</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include/</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include/avr/</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.8.1/include</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.2/include</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.3/include</Value>
+      <Value>D:/Program Files (x86)/Arduino/libraries/Servo/src</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility</Value>
+      <Value>D:/Program Files (x86)/Arduino/libraries</Value>
+      <Value>D:/etc/Documents/Arduino/libraries</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/avr</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.2/include</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.3/include</Value>
     </ListValues>
   </avrgcc.compiler.directories.IncludePaths>
   <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
@@ -497,7 +505,7 @@ ProjectDir=C:\var\arduino\Car2.0\Car2.0\
     <ListValues>
       <Value>__AVR_ATmega2560__</Value>
       <Value>_VMDEBUG=1</Value>
-      <Value>ARDUINO=10805</Value>
+      <Value>ARDUINO=10807</Value>
       <Value>ARDUINO_MAIN</Value>
       <Value>F_CPU=16000000L</Value>
       <Value>__AVR__</Value>
@@ -508,16 +516,19 @@ ProjectDir=C:\var\arduino\Car2.0\Car2.0\
   <avrgcccpp.compiler.directories.IncludePaths>
     <ListValues>
       <Value>../../../Car2.0</Value>
-      <Value>C:/Arduino/libraries</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/libraries</Value>
-      <Value>C:/Users/juraj/Documents/Arduino/libraries</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/variants/mega</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include/</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include/avr/</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.8.1/include</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.2/include</Value>
-      <Value>C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.3/include</Value>
+      <Value>D:/Program Files (x86)/Arduino/libraries/Servo/src</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility</Value>
+      <Value>D:/Program Files (x86)/Arduino/libraries</Value>
+      <Value>D:/etc/Documents/Arduino/libraries</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/avr</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.2/include</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.3/include</Value>
     </ListValues>
   </avrgcccpp.compiler.directories.IncludePaths>
   <avrgcccpp.compiler.optimization.level>Optimize (-O1)</avrgcccpp.compiler.optimization.level>
@@ -539,7 +550,7 @@ ProjectDir=C:\var\arduino\Car2.0\Car2.0\
   <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
 </AvrGccCpp>
     </ToolchainSettings>
-    <VMSETTING_IncludePaths>../../../Car2.0;C:/Arduino/libraries;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/libraries;C:/Users/juraj/Documents/Arduino/libraries;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/variants/standard;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include/;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include/avr/;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.8.1/include;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.2/include;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.3/include;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/libraries/Wire/src;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/libraries/Wire/src/utility;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/variants/mega;</VMSETTING_IncludePaths>
+    <VMSETTING_IncludePaths>../../../Car2.0;C:/Arduino/libraries;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/libraries;C:/Users/juraj/Documents/Arduino/libraries;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/cores/arduino;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/variants/standard;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include/;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/avr/include/avr/;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.8.1/include;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.2/include;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/lib/gcc/avr/4.9.3/include;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/libraries/Wire/src;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/libraries/Wire/src/utility;C:/Users/juraj/AppData/Local/arduino15/packages/arduino/hardware/avr/1.6.20/variants/mega;D:/Program Files (x86)/Arduino/libraries;D:/etc/Documents/Arduino/libraries;D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries;D:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;D:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega;D:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include;D:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/avr;D:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include;D:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.2/include;D:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.3/include;D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src;D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility;D:/Program Files (x86)/Arduino/libraries/Servo/src;</VMSETTING_IncludePaths>
     <VisualMicroSettings>
       <VisualMicroSettings>
         <ValidatedAS7>1</ValidatedAS7>
@@ -587,16 +598,16 @@ menu.cpu.atmega1280.bootloader.extended_fuses=0xF5
 menu.cpu.atmega1280.bootloader.file=atmega/ATmegaBOOT_168_atmega1280.hex
 menu.cpu.atmega1280.build.mcu=atmega1280
 menu.cpu.atmega1280.build.board=AVR_MEGA
-runtime.ide.path=C:\Arduino
+runtime.ide.path=D:\Program Files (x86)\Arduino
 runtime.os=windows
-build.system.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.20\system
-runtime.ide.version=10805
+build.system.path=D:\Program Files (x86)\Arduino\hardware\arduino\avr\system
+runtime.ide.version=10807
 target_package=arduino
 target_platform=avr
-runtime.hardware.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\hardware\avr
+runtime.hardware.path=D:\Program Files (x86)\Arduino\hardware\arduino
 originalid=mega
 intellisense.tools.path={runtime.tools.avr-gcc.path}\
-intellisense.include.paths={intellisense.tools.path}avr\include\;{intellisense.tools.path}avr\include\avr\;{intellisense.tools.path}lib\gcc\avr\4.8.1\include;{intellisense.tools.path}lib\gcc\avr\4.9.2\include;{intellisense.tools.path}lib\gcc\avr\4.9.3\include
+intellisense.include.paths={intellisense.tools.path}avr\include;{intellisense.tools.path}avr\include\avr;{intellisense.tools.path}lib\gcc\avr\4.8.1\include;{intellisense.tools.path}lib\gcc\avr\4.9.2\include;{intellisense.tools.path}lib\gcc\avr\4.9.3\include;
 tools.atprogram.cmd.path=%AVRSTUDIO_EXE_PATH%\atbackend\atprogram
 tools.atprogram.cmd.setwinpath=true
 tools.atprogram.program.params.verbose=-v
@@ -608,7 +619,7 @@ tools.atprogram.erase.params.quiet=-q
 tools.atprogram.bootloader.params.verbose=-v
 tools.atprogram.bootloader.params.quiet=-q
 tools.atprogram.bootloader.pattern="{cmd.path}" -d {build.mcu} {bootloader.verbose}  program -c -f "{runtime.ide.path}\hardware\arduino\avr\bootloaders\{bootloader.file}"
-version=1.6.20
+version=1.6.23
 compiler.warning_flags=-w
 compiler.warning_flags.none=-w
 compiler.warning_flags.default=
@@ -621,7 +632,7 @@ compiler.c.elf.flags={compiler.warning_flags} -Os -g -flto -fuse-linker-plugin -
 compiler.c.elf.cmd=avr-gcc
 compiler.S.flags=-c -g -x assembler-with-cpp -flto -MMD
 compiler.cpp.cmd=avr-g++
-compiler.cpp.flags=-c -g -Os {compiler.warning_flags} -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -MMD -flto
+compiler.cpp.flags=-c -g -Os {compiler.warning_flags} -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto
 compiler.ar.cmd=avr-gcc-ar
 compiler.ar.flags=rcs
 compiler.objcopy.cmd=avr-objcopy
@@ -680,7 +691,7 @@ tools.avrdude_remote.upload.pattern=/usr/bin/run-avrdude /tmp/sketch.hex {upload
 tools.avrdude.upload.network_pattern="{network_cmd}" -address {serial.port} -port {upload.network.port} -sketch "{build.path}/{build.project_name}.hex" -upload {upload.network.endpoint_upload} -sync {upload.network.endpoint_sync} -reset {upload.network.endpoint_reset} -sync_exp {upload.network.sync_return}
 build.usb_manufacturer="Unknown"
 build.usb_flags=-DUSB_VID={build.vid} -DUSB_PID={build.pid} '-DUSB_MANUFACTURER={build.usb_manufacturer}' '-DUSB_PRODUCT={build.usb_product}'
-vm.platform.root.path=C:\Program Files (x86)\Atmel\Studio\7.0\Extensions\wsmezn1v.lxt\Micro Platforms\arduino16x
+vm.platform.root.path=D:\Program Files (x86)\Atmel\Studio\7.0\Extensions\ohs34rfx.2kx\Micro Platforms\arduino16x
 avrisp.name=AVR ISP
 avrisp.communication=serial
 avrisp.protocol=stk500v1
@@ -718,9 +729,9 @@ parallel.program.tool=avrdude
 parallel.program.extra_params=-F
 arduinoasisp.name=Arduino as ISP
 arduinoasisp.communication=serial
-arduinoasisp.protocol=stk500v1
+arduinoasisp.protocol=arduino
 arduinoasisp.speed=19200
-arduinoasisp.program.protocol=stk500v1
+arduinoasisp.program.protocol=arduino
 arduinoasisp.program.speed=19200
 arduinoasisp.program.tool=avrdude
 arduinoasisp.program.extra_params=-P{serial.port} -b{program.speed}
@@ -759,18 +770,13 @@ atmel_ice.protocol=atmelice_isp
 atmel_ice.program.protocol=atmelice_isp
 atmel_ice.program.tool=avrdude
 atmel_ice.program.extra_params=-Pusb
-runtime.tools.avr-gcc.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\tools\avr-gcc\4.9.2-atmel3.5.4-arduino2
-runtime.tools.avr-gcc-4.9.2-atmel3.5.4-arduino2.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\tools\avr-gcc\4.9.2-atmel3.5.4-arduino2
-runtime.tools.avrdude.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\tools\avrdude\6.3.0-arduino9
-runtime.tools.avrdude-6.3.0-arduino9.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\tools\avrdude\6.3.0-arduino9
-runtime.tools.arduinoOTA.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\tools\arduinoOTA\1.1.1
-runtime.tools.arduinoOTA-1.1.1.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\tools\arduinoOTA\1.1.1
-runtime.tools.esptool.path=C:\Users\juraj\AppData\Local\arduino15\packages\esp8266\tools\esptool\0.4.13
-runtime.tools.esptool-0.4.13.path=C:\Users\juraj\AppData\Local\arduino15\packages\esp8266\tools\esptool\0.4.13
-runtime.tools.mkspiffs.path=C:\Users\juraj\AppData\Local\arduino15\packages\esp8266\tools\mkspiffs\0.2.0
-runtime.tools.mkspiffs-0.2.0.path=C:\Users\juraj\AppData\Local\arduino15\packages\esp8266\tools\mkspiffs\0.2.0
-runtime.tools.xtensa-lx106-elf-gcc.path=C:\Users\juraj\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\1.20.0-26-gb404fb9-2
-runtime.tools.xtensa-lx106-elf-gcc-1.20.0-26-gb404fb9-2.path=C:\Users\juraj\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\1.20.0-26-gb404fb9-2
+runtime.tools.avr-gcc.path=D:\Program Files (x86)\Arduino\hardware\tools\avr
+runtime.tools.avr-gcc-5.4.0-atmel3.6.1-arduino2.path=D:\Program Files (x86)\Arduino\hardware\tools\avr
+runtime.tools.tools-avr.path=D:\Program Files (x86)\Arduino\hardware\tools\avr
+runtime.tools.avrdude.path=D:\Program Files (x86)\Arduino\hardware\tools\avr
+runtime.tools.avrdude-6.3.0-arduino14.path=D:\Program Files (x86)\Arduino\hardware\tools\avr
+runtime.tools.arduinoOTA.path=D:\Program Files (x86)\Arduino\hardware\tools\avr
+runtime.tools.arduinoOTA-1.2.1.path=D:\Program Files (x86)\Arduino\hardware\tools\avr
 upload.protocol=wiring
 upload.maximum_size=253952
 upload.speed=115200
@@ -781,19 +787,20 @@ build.mcu=atmega2560
 runtime.vm.boardinfo.id=mega_atmega2560
 runtime.vm.boardinfo.name=mega_atmega2560
 runtime.vm.boardinfo.desc=Arduino/Genuino Mega w/ ATmega2560 (Mega 2560)
-runtime.vm.boardinfo.src_location=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.20
+runtime.vm.boardinfo.src_location=D:\Program Files (x86)\Arduino\hardware\arduino\avr
 ide.hint=Use installed IDE. Provides built-in hardware, reference/help and libraries.
 ide.location.key=Arduino16x
 ide.location.ide.winreg=Arduino 1.6.x Application
 ide.location.sketchbook.winreg=Arduino 1.6.x Sketchbook
 ide.location.sketchbook.preferences=sketchbook.path
-ide.default.revision_name=1.8.0
+ide.default.revision_name=1.9.0
 ide.default.version=10800
 ide.default.package=arduino
 ide.default.platform=avr
 ide.multiplatform=true
 ide.includes=Arduino.h
 ide.exe_name=arduino
+ide.recipe.preproc.defines.flags=-w -x c++ -E -dM
 ide.platformswithoutpackage=false
 ide.includes.fallback=wprogram.h
 ide.extension=ino
@@ -825,21 +832,22 @@ ssh.user.default.password=arduino
 ssh.host.wwwfiles.path=/www/sd
 build.working_directory={runtime.ide.path}\java\bin
 ide.appid=arduino16x
-location.sketchbook=C:\Users\juraj\Documents\Arduino
-build.core.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.20\cores\arduino
-vm.core.include=Arduino.h
-vm.boardsource.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.20
-runtime.platform.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.20
+location.sketchbook=D:\etc\Documents\Arduino
+build.core.path=D:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino
+vm.core.include=arduino.h
+vm.boardsource.path=D:\Program Files (x86)\Arduino\hardware\arduino\avr
+runtime.platform.path=D:\Program Files (x86)\Arduino\hardware\arduino\avr
 vm.platformname.name=avr
 build.arch=AVR
 builder.noino=false
-build.architecture=4.9.2-atmel3.5.4-arduino2
-vmresolved.compiler.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\tools\avr-gcc\4.9.2-atmel3.5.4-arduino2\bin\
-vmresolved.tools.path=C:\Users\juraj\AppData\Local\arduino15\packages\arduino\tools\avr-gcc\4.9.2-atmel3.5.4-arduino2
-build.path=C:\Users\juraj\AppData\Local\Temp\VMBuilds\Car2.0\mega_atmega2560\Debug
+build.architecture=avr
+vmresolved.compiler.path=D:\Program Files (x86)\Arduino\hardware\tools\avr\bin\
+vmresolved.tools.path=D:\Program Files (x86)\Arduino\hardware\tools\avr
 build.project_name=Car2.0.ino
-build.project_path=C:\var\arduino\Car2.0\Car2.0
-ProjectDir=C:\var\arduino\Car2.0\Car2.0\
+build.project_path=D:\Projects\Car2.0\Car2.0
+sketch_path=D:\Projects\Car2.0\Car2.0
+ProjectDir=D:\Projects\Car2.0\Car2.0\
+build.path=C:\Users\juraj\AppData\Local\Temp\VMBuilds\Car2.0\mega_atmega2560\Debug
 </arduino.board.property_bag>
         <arduino.build.mcu>atmega2560</arduino.build.mcu>
         <arduino.build.f_cpu>16000000L</arduino.build.f_cpu>
