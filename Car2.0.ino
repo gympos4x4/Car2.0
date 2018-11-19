@@ -1,9 +1,9 @@
-#include "ESP8266.h"
 // Car2.0.ino
 // Author: Juraj Marcin
 
-#define DEBUG
-#define SEND_INTERVAL 500
+//#define DEBUG
+#define SEND_INTERVAL 1750
+#define DEBUG_INTERVAL 500
 
 #include "ESP8266.h"
 #include "SpektrumRC.h"
@@ -14,6 +14,7 @@
 CarData cardata;
 
 uint64_t lastDataSend = 0;
+uint64_t lastDebugSend = 0;
 
 void setup() {
 	#ifdef DEBUG
@@ -50,17 +51,23 @@ void loop() {
 	SpektrumRC.loop();
 	//ParkingSensors.loop();
 
+	updateCarData();
+
 	if (millis() > lastDataSend + SEND_INTERVAL) {
 		ESP8266.sendCarData(&cardata);
 		lastDataSend = millis();
 	}
+	
+	ESP8266.loop();
 
-	updateCarData();
 	#ifdef DEBUG
-	sendDebug();
+	if (millis() > lastDebugSend + DEBUG_INTERVAL) {
+		sendDebug();
+		lastDebugSend = millis();
+	}
 	#endif // DEBUG
 
-	delay(5);
+	delay(10);
 }
 
 void sendDebug() {
