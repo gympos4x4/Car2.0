@@ -22,7 +22,7 @@ class _ESP8266 {
 
 	bool sendCarData(CarData* data);
 	
-	void loop();
+	void loop(ControllerData* data);
 
 	private:
 	void cmd(const char cmd[]);

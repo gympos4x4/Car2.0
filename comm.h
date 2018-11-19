@@ -34,4 +34,9 @@ struct CarData
 	} parking;
 };
 
+struct ControllerData {
+	int8_t height;
+	bool rearSteering;
+};
+
 #endif /* COMM_H_ */

@@ -10,7 +10,6 @@ _ESP8266 ESP8266;
 void _ESP8266::init() {
 	Serial.begin(9600);
 	pinMode(ESP_RST_PIN, OUTPUT);
-	//bitWrite(PORTE, 2, 1);
 	digitalWrite(ESP_RST_PIN, HIGH);
 	ESP_SERIAL.begin(115200);
 	ESP_SERIAL.setTimeout(ES_TIMEOUT);
@@ -37,7 +36,7 @@ void _ESP8266::init() {
 
 bool _ESP8266::sendCarData(CarData* data) {
 	ESP_SERIAL.print("AT+CIPSEND=");
-	ESP_SERIAL.println(sizeof(CarData) * 2 + 1);
+	ESP_SERIAL.println(sizeof(CarData) + 3);
 	uint64_t cmdtxend = millis();
 	bool gotresponse = false;
 	while (millis() < cmdtxend + ES_TIMEOUT) {
@@ -48,30 +47,39 @@ bool _ESP8266::sendCarData(CarData* data) {
 	}
 	if (gotresponse) {
 		for(uint8_t i = 0; i < sizeof(CarData); i++) {
-			ESP_SERIAL.print(((byte*)data)[i] / 16, HEX);
-			ESP_SERIAL.print(((byte*)data)[i] % 16, HEX);
+			ESP_SERIAL.write(((uint8_t*)data)[i]);
+			//ESP_SERIAL.print(((byte*)data)[i] / 16, HEX);
+			//ESP_SERIAL.print(((byte*)data)[i] % 16, HEX);
 		}
-		ESP_SERIAL.println("\n");
+		ESP_SERIAL.println("   ");
 		return true;
 	}
 	ESP_SERIAL.println("+++");
 	return false;
 }
 
-void _ESP8266::loop() {
-	if (ESP_SERIAL.available()) {
+void _ESP8266::loop(ControllerData* data) {
+	uint8_t i = 0;
+	while (ESP_SERIAL.available()) {
 		char serRead = ESP_SERIAL.read();
 		if (serRead == '+') {
+			#ifdef DEBUG
 			Serial.print("\r\n<DATA>");
-			/*uint8_t* buffer[6];
-			ESP_SERIAL.readBytes(*buffer, 6);*/
-			for (uint64_t i = 0; i < 9; i++) {
-				Serial.write(ESP_SERIAL.read());
+			#endif // DEBUG
+			uint8_t buffer[6];
+			ESP_SERIAL.readBytes(buffer, 6);
+			for (uint8_t i = 0; i < sizeof(ControllerData); i++) {
+				((uint8_t*)data)[i] = ESP_SERIAL.read();
+				#ifdef DEBUG
+				Serial.println(((uint8_t*)data)[i]);
+				#endif // DEBUG
 			}
+			#ifdef DEBUG
 			Serial.println("</DATA>\r\n");
-		} else {
-			Serial.write(serRead);
+			#endif // DEBUG
 		}
+		if (i > 64) { Serial.println("broke"); break; }
+		i++;
 	}
 }
 
