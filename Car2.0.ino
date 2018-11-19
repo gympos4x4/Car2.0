@@ -2,7 +2,7 @@
 // Author: Juraj Marcin
 
 //#define DEBUG
-#define SEND_INTERVAL 1750
+#define SEND_INTERVAL 500
 #define DEBUG_INTERVAL 500
 
 #include "ESP8266.h"
@@ -12,6 +12,7 @@
 #include "ParkingSensors.h"
 
 CarData cardata;
+ControllerData ctrldata;
 
 uint64_t lastDataSend = 0;
 uint64_t lastDebugSend = 0;
@@ -58,8 +59,8 @@ void loop() {
 		lastDataSend = millis();
 	}
 	
-	ESP8266.loop();
-
+	ESP8266.loop(&ctrldata);
+	
 	#ifdef DEBUG
 	if (millis() > lastDebugSend + DEBUG_INTERVAL) {
 		sendDebug();
@@ -72,13 +73,15 @@ void loop() {
 
 void sendDebug() {
 	Serial.println(millis());
-	Serial.print("battery_percentage=");Serial.println(cardata.battery_percentage);
-	Serial.print("tilt.degrees=");Serial.println(cardata.tilt.degrees);
-	Serial.print("tilt.tilted=");Serial.println(cardata.tilt.tilted);
-	Serial.print("lights.is_below_threshold=");Serial.println(cardata.lights.is_below_threshold);
-	Serial.print("lights.level=");Serial.println(cardata.lights.level);
-	Serial.print("rc.throttle=");Serial.println(cardata.rc.throttle);
-	Serial.print("rc.steer=");Serial.println(cardata.rc.steer);
+	Serial.print("car.battery_percentage=");Serial.println(cardata.battery_percentage);
+	Serial.print("car.tilt.degrees=");Serial.println(cardata.tilt.degrees);
+	Serial.print("car.tilt.tilted=");Serial.println(cardata.tilt.tilted);
+	Serial.print("car.lights.is_below_threshold=");Serial.println(cardata.lights.is_below_threshold);
+	Serial.print("car.lights.level=");Serial.println(cardata.lights.level);
+	Serial.print("car.rc.throttle=");Serial.println(cardata.rc.throttle);
+	Serial.print("car.rc.steer=");Serial.println(cardata.rc.steer);
+	Serial.print("ctrl.height=");Serial.println(ctrldata.height);
+	Serial.print("ctrl.rearSteering=");Serial.println(ctrldata.rearSteering);
 }
 
 void updateCarData() {
