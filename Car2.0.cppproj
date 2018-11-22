@@ -71,6 +71,7 @@
       <Value>../../../Car2.0</Value>
       <Value>D:/Program Files (x86)/Arduino/libraries/Servo/src</Value>
       <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility</Value>
       <Value>D:/Program Files (x86)/Arduino/libraries</Value>
       <Value>D:/etc/Documents/Arduino/libraries</Value>
       <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
@@ -108,6 +109,7 @@
       <Value>../../../Car2.0</Value>
       <Value>D:/Program Files (x86)/Arduino/libraries/Servo/src</Value>
       <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility</Value>
       <Value>D:/Program Files (x86)/Arduino/libraries</Value>
       <Value>D:/etc/Documents/Arduino/libraries</Value>
       <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
@@ -478,6 +480,7 @@ build.path=C:\Users\juraj\AppData\Local\Temp\VMBuilds\Car2.0\mega_atmega2560\Deb
       <Value>../../../Car2.0</Value>
       <Value>D:/Program Files (x86)/Arduino/libraries/Servo/src</Value>
       <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility</Value>
       <Value>D:/Program Files (x86)/Arduino/libraries</Value>
       <Value>D:/etc/Documents/Arduino/libraries</Value>
       <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
@@ -515,6 +518,7 @@ build.path=C:\Users\juraj\AppData\Local\Temp\VMBuilds\Car2.0\mega_atmega2560\Deb
       <Value>../../../Car2.0</Value>
       <Value>D:/Program Files (x86)/Arduino/libraries/Servo/src</Value>
       <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
+      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility</Value>
       <Value>D:/Program Files (x86)/Arduino/libraries</Value>
       <Value>D:/etc/Documents/Arduino/libraries</Value>
       <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
@@ -859,6 +863,12 @@ build.path=C:\Users\juraj\AppData\Local\Temp\VMBuilds\Car2.0\mega_atmega2560\Deb
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Car2.0.ino">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Chassis.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Chassis.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="comm.cpp">

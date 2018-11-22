@@ -41,10 +41,18 @@ int8_t _SpektrumRC::getSteer() {
 	}
 }
 
-void _SpektrumRC::loop() {
+void _SpektrumRC::loop(bool disableAServo) {
 	lastThrottle = getThrottle();
 	lastSteer = getSteer();
-	aServo.write(map(lastSteer, -100, 100, SR_ASR_MIN, SR_ASR_MAX));
+	if (disableAServo) {
+		if (!aServoDisabled) {
+			aServo.write(abs(SR_ASR_MIN + SR_ASR_MAX) / 2);
+			aServoDisabled = true;
+		}
+	} else {
+		aServo.write(map(lastSteer, -100, 100, SR_ASR_MIN, SR_ASR_MAX));
+		aServoDisabled = false;
+	}
 }
 
 void _SpektrumRC::updateCarData(class CarData& cardata) {

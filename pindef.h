@@ -1,10 +1,5 @@
-/*
- * pins.h
- *
- * Created: 30/05/2018 20:43:35
- *  Author: juraj
- */ 
-
+// pindef.h
+// Author: Juraj Marcin
 
 #ifndef PINS_H_
 #define PINS_H_
@@ -37,5 +32,9 @@
 #define ASTR_PIN 46
 #define THRI_PIN 48
 #define THRO_PIN 44
+
+//CHASSIS
+#define CHS_MOT_PWM 4
+#define CHS_MOT_DIR 39
 
 #endif /* PINS_H_ */

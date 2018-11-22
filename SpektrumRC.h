@@ -31,6 +31,7 @@
 class _SpektrumRC {
 	
 	Servo aServo;
+	bool aServoDisabled;
 
 	int8_t lastThrottle;
 	int8_t lastSteer;
@@ -38,7 +39,7 @@ class _SpektrumRC {
 	public:
 
 	void init();
-	void loop();
+	void loop(bool disableAServo = true);
 
 	int8_t getThrottle();
 	int8_t getSteer();
