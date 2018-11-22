@@ -71,7 +71,7 @@ void _ESP8266::loop(ControllerData* data) {
 			for (uint8_t i = 0; i < sizeof(ControllerData); i++) {
 				((uint8_t*)data)[i] = ESP_SERIAL.read();
 				#ifdef DEBUG
-				Serial.println(((uint8_t*)data)[i]);
+				Serial.print(((uint8_t*)data)[i]); Serial.print(" ");
 				#endif // DEBUG
 			}
 			#ifdef DEBUG

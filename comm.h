@@ -35,8 +35,8 @@ struct CarData
 };
 
 struct ControllerData {
-	int8_t height;
-	bool rearSteering;
+	uint8_t height;
+	bool disable_a_str;
 };
 
 #endif /* COMM_H_ */

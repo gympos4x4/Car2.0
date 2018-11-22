@@ -1,7 +1,7 @@
 // Car2.0.ino
 // Author: Juraj Marcin
 
-//#define DEBUG
+#define DEBUG
 #define SEND_INTERVAL 500
 #define DEBUG_INTERVAL 500
 
@@ -10,6 +10,7 @@
 #include "TiltAlarm.h"
 #include "Lights.h"
 #include "ParkingSensors.h"
+#include "Chassis.h"
 
 CarData cardata;
 ControllerData ctrldata;
@@ -32,6 +33,7 @@ void setup() {
 	Lights.init();
 	TiltAlarm.init();
 	SpektrumRC.init();
+	Chassis.init();
 	//ParkingSensors.init();
 	
 	digitalWrite(SPKR_PIN, HIGH);
@@ -49,7 +51,8 @@ void setup() {
 void loop() {
 	Lights.loop();
 	TiltAlarm.loop();
-	SpektrumRC.loop();
+	SpektrumRC.loop(ctrldata.disable_a_str);
+	Chassis.setHeight(ctrldata.height);
 	//ParkingSensors.loop();
 
 	updateCarData();
@@ -81,7 +84,7 @@ void sendDebug() {
 	Serial.print("car.rc.throttle=");Serial.println(cardata.rc.throttle);
 	Serial.print("car.rc.steer=");Serial.println(cardata.rc.steer);
 	Serial.print("ctrl.height=");Serial.println(ctrldata.height);
-	Serial.print("ctrl.rearSteering=");Serial.println(ctrldata.rearSteering);
+	Serial.print("ctrl.disable_a_str=");Serial.println(ctrldata.disable_a_str);
 }
 
 void updateCarData() {
