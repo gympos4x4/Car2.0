@@ -35,8 +35,8 @@ struct CarData
 };
 
 struct ControllerData {
-	uint8_t height;
-	bool disable_a_str;
+	int8_t height;
+	int8_t astr_mode;
 };
 
 #endif /* COMM_H_ */

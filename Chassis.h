@@ -21,7 +21,7 @@ class _Chassis {
 	public:
 	void init();
 
-	void setHeight(uint8_t height);
+	void setHeight(int8_t height);
 };
 
 extern _Chassis Chassis;

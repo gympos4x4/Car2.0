@@ -3,6 +3,8 @@
 
 #include "SpektrumRC.h"
 
+#define DEBUG
+
 _SpektrumRC SpektrumRC;
 
 void _SpektrumRC::init() {
@@ -41,10 +43,11 @@ int8_t _SpektrumRC::getSteer() {
 	}
 }
 
-void _SpektrumRC::loop(bool disableAServo) {
+void _SpektrumRC::loop(int8_t astrMode) {
 	lastThrottle = getThrottle();
 	lastSteer = getSteer();
-	if (disableAServo) {
+	aServo.write(map(lastSteer * astrMode, -100, 100, SR_ASR_MIN, SR_ASR_MAX));
+	/*if (disableAServo) {
 		if (!aServoDisabled) {
 			aServo.write(abs(SR_ASR_MIN + SR_ASR_MAX) / 2);
 			aServoDisabled = true;
@@ -52,7 +55,7 @@ void _SpektrumRC::loop(bool disableAServo) {
 	} else {
 		aServo.write(map(lastSteer, -100, 100, SR_ASR_MIN, SR_ASR_MAX));
 		aServoDisabled = false;
-	}
+	}*/
 }
 
 void _SpektrumRC::updateCarData(class CarData& cardata) {
