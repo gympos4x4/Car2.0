@@ -3,7 +3,7 @@
 
 #include "ESP8266.h"
 
-#define DEBUG
+//#define DEBUG
 
 _ESP8266 ESP8266;
 

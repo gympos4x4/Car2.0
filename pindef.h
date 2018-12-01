@@ -34,7 +34,7 @@
 #define THRO_PIN 44
 
 //CHASSIS
-#define CHS_MOT_PWM 4
-#define CHS_MOT_DIR 39
+#define CHS_MOT_UP 4
+#define CHS_MOT_DW 39
 
 #endif /* PINS_H_ */

@@ -39,7 +39,7 @@ class _SpektrumRC {
 	public:
 
 	void init();
-	void loop(bool disableAServo = true);
+	void loop(int8_t astrMode);
 
 	int8_t getThrottle();
 	int8_t getSteer();

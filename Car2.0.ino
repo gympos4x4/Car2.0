@@ -1,7 +1,7 @@
 // Car2.0.ino
 // Author: Juraj Marcin
 
-#define DEBUG
+//#define DEBUG
 #define SEND_INTERVAL 500
 #define DEBUG_INTERVAL 500
 
@@ -29,6 +29,7 @@ void setup() {
 	digitalWrite(SPKR_PIN, HIGH);
 	delay(400);
 	digitalWrite(SPKR_PIN, LOW);
+	setDefValues();
 	ESP8266.init();
 	Lights.init();
 	TiltAlarm.init();
@@ -51,8 +52,9 @@ void setup() {
 void loop() {
 	Lights.loop();
 	TiltAlarm.loop();
-	SpektrumRC.loop(ctrldata.disable_a_str);
+	SpektrumRC.loop(ctrldata.astr_mode);
 	Chassis.setHeight(ctrldata.height);
+	ctrldata.height = 0;
 	//ParkingSensors.loop();
 
 	updateCarData();
@@ -84,7 +86,7 @@ void sendDebug() {
 	Serial.print("car.rc.throttle=");Serial.println(cardata.rc.throttle);
 	Serial.print("car.rc.steer=");Serial.println(cardata.rc.steer);
 	Serial.print("ctrl.height=");Serial.println(ctrldata.height);
-	Serial.print("ctrl.disable_a_str=");Serial.println(ctrldata.disable_a_str);
+	Serial.print("ctrl.astr_mode=");Serial.println(ctrldata.astr_mode);
 }
 
 void updateCarData() {
@@ -93,4 +95,8 @@ void updateCarData() {
 	//ParkingSensors.update_cardata(cardata);
 	SpektrumRC.updateCarData(cardata);
 	TiltAlarm.updateCarData(cardata);
+}
+
+void setDefValues() {
+	ctrldata.astr_mode = 1;
 }
