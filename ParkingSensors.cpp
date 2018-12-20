@@ -5,31 +5,39 @@
 _ParkingSensors ParkingSensors;
 
 void _ParkingSensors::init() {
-	pinMode(PS_IR_PIN, OUTPUT);
+	PIN_OUT(PS_IR_DIR, PS_IR_PIN)
+	ADCSRB = (ADCSRB & ~(1 << MUX5)) | (((0 >> 3) & 0x01) << MUX5);
+	ADMUX = (1 << REFS0);
+	ADCSRA = (1 << ADEN) | (1 << ADIE) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0);
+	ADCSRA |= (1 << ADSC);
 }
 
-int16_t _ParkingSensors::readsensor(int sensor) {
-	int16_t high = 0;
-	int16_t low = 0;
-	if (PS_SENSOR_COUNT > sensor) {
-		digitalWrite(PS_IR_PIN, LOW);
-		high = analogRead(sensorPins[sensor]);
-		digitalWrite(PS_IR_PIN, HIGH);
-		low = analogRead(sensorPins[sensor]);
+void _ParkingSensors::interr() {
+	uint8_t low = ADCL;
+	uint8_t high = ADCH;
+	int16_t reading = (high << 8) | low;
+	if (currentState) {
+		sensorData[currentSensor] = reading - lowStates[currentSensor];
+		currentSensor++;
+		if (currentSensor >= PS_SENSOR_COUNT) {
+			currentState = 0;
+			PIN_WRITE_H(PS_IR_PRT, PS_IR_PIN);
+			currentSensor = 0;
+		}
+		} else {
+		lowStates[currentSensor] = reading;
+		currentSensor++;
+		if (currentSensor >= PS_SENSOR_COUNT) {
+			currentState = 1;
+			PIN_WRITE_H(PS_IR_PRT, PS_IR_PIN);
+			currentSensor = 0;
+		}
 	}
-	int16_t res = high - low;
-	return res < 0 ? 0 : res;
+	ADMUX = (1 << REFS0) | currentSensor;
+	ADCSRA |= (1 << ADSC);
 }
 
-void _ParkingSensors::loop() {
-	for (int i = 0; i < PS_SENSOR_COUNT; i++) {
-		sensorData[i] = readsensor(i), 0, 10, 0, 1023;
+void _ParkingSensors::update_cardata(CarData& cardata) {
+	for (uint8_t i = 0; i < PS_SENSOR_COUNT; i++) {
+		cardata.parking.sensor_data[i] = sensorData[i];
 	}
-}
-
-void _ParkingSensors::update_cardata(CarData& cardata)
-{
-	for(int i = 0; i < PS_SENSOR_COUNT; i++);
-		//cardata.parking.sensor_data[i] = sensorData[i];
-}
-
