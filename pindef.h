@@ -12,32 +12,36 @@
 
 #define VBAT_SENSE_PIN A0
 
+//ADC
+#define ADC_PIN_COUNT 1
+
 //ESP8266
-#define ESP_RST_PT PORTE
-#define ESP_RST_PP PE3
-#define ESP_RST_PIN 5
+#define ESP_RST_PRT PORTE
+#define ESP_RST_PIN PE3
 #define ESP_SERIAL Serial2
 
 //PARKINGSENSORS
-#define PS_IR_DIR DDRB
-#define PS_IR_PRT PORTB
-#define PS_IR_PIN PB1
+#define PS_SENSOR_COUNT 0
+#define PS_IR_DIR DDRJ
+#define PS_IR_PRT PORTJ
+#define PS_IR_PIN PJ7
 
 //SPKR
-#define SPKR_PT PORTK
-#define SPKR_PP PK0
-#define SPKR_PIN 62
-//#define PIEZO_PIN 62
+#define SPKR_DIR DDRA
+#define SPKR_PRT PORTA
+#define SPKR_PIN PA0
 
 //LIGHTS
 #define LXS_PIN A7
 #define LXS_ADP 7
-#define LX0_FRONT_PIN 55
-#define LX1_REAR_PIN 56
-#define LX2_REVERSE_PIN 57
-#define LX3_LEFT_PIN 58
-#define LX4_RIGHT_PIN 59
-#define LX5_PIN 60
+#define LX_DIR DDRF
+#define LX_PORT PORTF
+#define LX0_FRONT_PIN PF6
+#define LX1_REAR_PIN PF5
+#define LX2_REV0_PIN PF4
+#define LX3_REV1_PIN PF3
+#define LX4_LEFT_PIN PF2
+#define LX5_RIGHT_PIN PF1
 
 //SPEKTRUM RC
 #define STRI_PIN 49

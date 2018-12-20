@@ -18,6 +18,9 @@ ControllerData ctrldata;
 uint64_t lastDataSend = 0;
 uint64_t lastDebugSend = 0;
 
+uint8_t adcPins[ADC_PIN_COUNT] = {1};
+uint8_t adcPin = 0;
+
 void setup() {
 	#ifdef DEBUG
 	Serial.begin(9600);
@@ -25,37 +28,55 @@ void setup() {
 	#ifdef DEBUG
 	Serial.println("Booting...");
 	#endif // DEBUG
-	pinMode(SPKR_PIN, OUTPUT);
-	digitalWrite(SPKR_PIN, HIGH);
+	PIN_OUT(SPKR_DIR, SPKR_PIN);
+	
+	/* BOOT START SOUND */
+	PIN_WRITE_H(SPKR_PRT, SPKR_PIN);
 	delay(400);
-	digitalWrite(SPKR_PIN, LOW);
-	setDefValues();
-	ESP8266.init();
+	PIN_WRITE_L(SPKR_PRT, SPKR_PIN);
+	
+	sei();
+	
+	
+	/* SET DEFAULT VALUES */
+	ctrldata.astr_mode = 1;
+	
+	/* INIT DEVICES */
 	Lights.init();
 	TiltAlarm.init();
 	SpektrumRC.init();
 	Chassis.init();
 	//ParkingSensors.init();
+	ESP8266.init();
 	
-	digitalWrite(SPKR_PIN, HIGH);
+	/* INIT ADC */
+	ADCSRB = (ADCSRB & ~(1 << MUX5)) | (((0 >> 3) & 0x01) << MUX5);
+	ADMUX = (1 << REFS0);
+	ADCSRA = (1 << ADEN) | (1 << ADIE) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0);
+	ADCSRA |= (1 << ADSC);
+	
+	/* BOOT END SOUND */
+	PIN_WRITE_H(SPKR_PRT, SPKR_PIN);
 	delay(200);
-	digitalWrite(SPKR_PIN, LOW);
+	PIN_WRITE_L(SPKR_PRT, SPKR_PIN);
 	delay(200);
-	digitalWrite(SPKR_PIN, HIGH);
+	PIN_WRITE_H(SPKR_PRT, SPKR_PIN);
 	delay(200);
-	digitalWrite(SPKR_PIN, LOW);
+	PIN_WRITE_L(SPKR_PRT, SPKR_PIN);
+	
+	/* START ADC CONVERSION */
+	startADCConverstion(adcPins[adcPin]);
+	
 	#ifdef DEBUG
 	Serial.println("Booted!");
 	#endif // DEBUG
 }
 
 void loop() {
-	Lights.loop();
 	TiltAlarm.loop();
 	SpektrumRC.loop(ctrldata.astr_mode);
 	Chassis.setHeight(ctrldata.height);
 	ctrldata.height = 0;
-	ParkingSensors.loop();
 
 	updateCarData();
 
@@ -98,6 +119,24 @@ void updateCarData() {
 	TiltAlarm.updateCarData(cardata);
 }
 
-void setDefValues() {
-	ctrldata.astr_mode = 1;
+void startADCConverstion(uint8_t pin) {
+	ADCSRB = (ADCSRB & ~(1 << MUX5)) | (pin & (1 << MUX5));
+	ADMUX = (1 << REFS0) | (pin & 0x07);
+	ADCSRA |= (1 << ADSC);
+}
+
+ISR(ADC_vect) {
+	uint8_t low = ADCL;
+	uint8_t high = ADCH;
+	int16_t reading = (high << 8) | low;
+	if (adcPins[adcPin] >= 8 && adcPins[adcPin] <= 15) {
+		ParkingSensors.interr(reading);
+		} else if (adcPins[adcPin] == 1) {
+		Lights.interr(reading);
+	}
+	adcPin++;
+	if (adcPin >= ADC_PIN_COUNT) {
+		adcPin = 0;
+	}
+	startADCConverstion(adcPins[adcPin]);
 }

@@ -9,8 +9,8 @@ _ESP8266 ESP8266;
 
 void _ESP8266::init() {
 	Serial.begin(9600);
-	pinMode(ESP_RST_PIN, OUTPUT);
-	digitalWrite(ESP_RST_PIN, HIGH);
+	PIN_OUT(ESP_RST_PRT, ESP_RST_PIN);
+	PIN_WRITE_H(ESP_RST_PRT, ESP_RST_PIN);
 	ESP_SERIAL.begin(115200);
 	ESP_SERIAL.setTimeout(ES_TIMEOUT);
 	cmd("AT+RST");
