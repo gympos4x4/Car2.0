@@ -55,7 +55,7 @@ void loop() {
 	SpektrumRC.loop(ctrldata.astr_mode);
 	Chassis.setHeight(ctrldata.height);
 	ctrldata.height = 0;
-	//ParkingSensors.loop();
+	ParkingSensors.loop();
 
 	updateCarData();
 
@@ -85,6 +85,7 @@ void sendDebug() {
 	Serial.print("car.lights.level=");Serial.println(cardata.lights.level);
 	Serial.print("car.rc.throttle=");Serial.println(cardata.rc.throttle);
 	Serial.print("car.rc.steer=");Serial.println(cardata.rc.steer);
+	Serial.print("car.parking.sensor_data=");Serial.println(cardata.parking.sensor_data[0]);
 	Serial.print("ctrl.height=");Serial.println(ctrldata.height);
 	Serial.print("ctrl.astr_mode=");Serial.println(ctrldata.astr_mode);
 }
@@ -92,7 +93,7 @@ void sendDebug() {
 void updateCarData() {
 	cardata.battery_percentage = (analogRead(VBAT_SENSE_PIN) - 700) / 2;
 	Lights.updateCarData(cardata);
-	//ParkingSensors.update_cardata(cardata);
+	ParkingSensors.update_cardata(cardata);
 	SpektrumRC.updateCarData(cardata);
 	TiltAlarm.updateCarData(cardata);
 }
