@@ -13,8 +13,6 @@
 #include "comm.h"
 #include "pindef.h"
 
-#define PS_SENSOR_COUNT 1
-
 class _ParkingSensors {
 
 	uint8_t currentState = 0;
@@ -25,7 +23,7 @@ class _ParkingSensors {
 	public:
 	void init();
 
-	void interr();
+	void interr(int16_t reading);
 
 	void update_cardata(CarData& cardata);
 };

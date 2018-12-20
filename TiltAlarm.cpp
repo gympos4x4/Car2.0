@@ -6,7 +6,6 @@
 _TiltAlarm TiltAlarm;
 
 void _TiltAlarm::init() {
-	pinMode(SPKR_PIN, OUTPUT);
 	Wire.begin();
 	Wire.beginTransmission(TA_MPU_ADDR);
 	Wire.write(TA_PWR_MGMT_1);  // PWR_MGMT_1 register
@@ -64,7 +63,7 @@ void _TiltAlarm::signal(bool value) {
 #ifdef PIEZO_PIN
 	tone(PIEZO_PIN, 440, 500);
 #else
-	digitalWrite(SPKR_PIN, value);
+	PIN_WRITE(SPKR_PRT, SPKR_PIN, value);
 #endif
 }
 

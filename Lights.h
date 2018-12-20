@@ -14,6 +14,7 @@
 #include "pindef.h"
 
 #define LI_TRESHOLD 36 // turn on lights below this value
+#define LI_BELOW_TRESHOLD(value) (value < LI_TRESHOLD)
 
 class _Lights {
 
@@ -26,7 +27,7 @@ public:
 public:
 	void init();
 
-	void loop();
+	void interr(int16_t reading);
 
 	void setFront(bool state);
 
@@ -37,8 +38,6 @@ public:
 	void setLeft(bool state);
 
 	void setRight(bool state);
-
-	bool isBelowThreshold();
 
 	void updateCarData(class CarData& cardata);
 };
