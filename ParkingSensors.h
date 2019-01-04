@@ -15,17 +15,17 @@
 
 class _ParkingSensors {
 
-	uint8_t currentState = 0;
-	uint8_t currentSensor = 0;
-	int16_t lowStates[PS_SENSOR_COUNT];
-	int16_t sensorData[PS_SENSOR_COUNT];
+	volatile uint8_t currentState = 0;
+	volatile uint8_t currentSensor = 0;
+	volatile int16_t lowStates[PRS_SENSOR_COUNT];
+	volatile int16_t sensorData[PRS_SENSOR_COUNT];
 
 	public:
 	void init();
 
 	void interr(int16_t reading);
 
-	void update_cardata(CarData& cardata);
+	void updateCarData(CarData& cardata);
 };
 
 extern _ParkingSensors ParkingSensors;

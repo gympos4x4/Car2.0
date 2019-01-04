@@ -3,65 +3,89 @@
 
 #include "SpektrumRC.h"
 
-#define DEBUG
-
 _SpektrumRC SpektrumRC;
 
 void _SpektrumRC::init() {
-	pinMode(THRI_PIN, INPUT);
-	pinMode(STRI_PIN, INPUT);
-	aServo.attach(ASTR_PIN);
-}
+	PIN_OUT(SRC_ASTR_DIR, SRC_ASTR_PIN);
+	
+	/* RESET TIMER4 REGISTER A */
+	TCCR4A = 0;
+	/* SET PRESCALER TO 64, RISING EDGE SELECT */
+	TCCR4B = (1 << CS41) | (1 << CS40) | (1 << ICES4);
+	/* SET INTERRUPT FOR TIMER4 IC */
+	TIMSK4 = (1 << ICIE4);
 
-int8_t _SpektrumRC::getThrottle() {
-	uint64_t val = pulseIn(THRI_PIN, HIGH, 20000);
-	#ifdef DEBUG
-	Serial.print("THR:");
-	Serial.println((long)val);
-	#endif
-	if (val < SR_THR_DMIN) {
-		return map(val, SR_THR_MIN, SR_THR_DMIN, -100, 0);
-		} else if (val < SR_THR_DMAX) {
-		return 0;
-		} else {
-		return map(val, SR_THR_DMAX, SR_THR_MAX, 0, 100);
-	}
-}
-
-int8_t _SpektrumRC::getSteer() {
-	uint64_t val = pulseIn(STRI_PIN, HIGH, 20000);
-	#ifdef DEBUG
-	Serial.print("STR:");
-	Serial.println((long)val);
-	#endif
-	if (val < SR_STR_DMIN) {
-		return map(val, SR_STR_MIN, SR_STR_DMIN, -100, 0);
-		} else if (val < SR_STR_DMAX) {
-		return 0;
-		} else {
-		return map(val, SR_STR_DMAX, SR_STR_MAX, 0, 100);
-	}
+	/* SET NON-INVERTING MODE ON CHANNEL A, FAST PWM 1024, PRESCALER TO 64, RISING EDGE SELECT */
+	TCCR5A = (1 << COM5A1) | (1 << WGM51) | (1 << WGM50);
+	TCCR5B = (1 << WGM52) | (1 << CS51) | (1 << CS50) | (1 << ICES5);
+	/* SET INERRUPT FOR TIMER5 IC AND OCA */
+	TIMSK5 = (1 << ICIE5) | (1 << OCIE5A);
 }
 
 void _SpektrumRC::loop(int8_t astrMode) {
-	lastThrottle = getThrottle();
-	lastSteer = getSteer();
-	aServo.write(map(lastSteer * astrMode, -100, 100, SR_ASR_MIN, SR_ASR_MAX));
-	/*if (disableAServo) {
-		if (!aServoDisabled) {
-			aServo.write(abs(SR_ASR_MIN + SR_ASR_MAX) / 2);
-			aServoDisabled = true;
-		}
+	if (astrMode > 0) {
+		OCR5A = str;
+	} else if (astrMode < 0) {
+		OCR5A = SRC_STR_INV - str;
 	} else {
-		aServo.write(map(lastSteer, -100, 100, SR_ASR_MIN, SR_ASR_MAX));
-		aServoDisabled = false;
-	}*/
+		OCR5A = SRC_STR_CTR;
+	}
 }
 
-void _SpektrumRC::updateCarData(class CarData& cardata) {
-	cardata.rc.throttle = lastThrottle;
-	cardata.rc.steer = lastSteer;
+void _SpektrumRC::strInputInterr() {
+	if (strIH) {
+		strH = ICR4;
+		str = strH - strL;
+		strIH = 0;
+		TCCR4B = (TCCR4B & ~(1 << ICES4)) | (1 << ICES4);
+	} else {
+		strL = ICR4;
+		strIH = 1;
+		TCCR4B = (TCCR4B & ~(1 << ICES4));
+	}
 }
 
-_SpektrumRC::_SpektrumRC() {}
-_SpektrumRC::~_SpektrumRC() {}
+void _SpektrumRC::thrInputInterr() {
+	if (thrIH) {
+		thrH = ICR5;
+		tthr = thrH - thrL;
+		if (tthr < 1024) {
+			thr = tthr;
+		}
+		thrIH = 0;
+		TCCR5B = (TCCR5B & ~(1 << ICES5)) | (1 << ICES5);
+	} else {
+		thrL = ICR5;
+		thrIH = 1;
+		TCCR5B = (TCCR5B & ~(1 << ICES5));
+	}
+}
+
+void _SpektrumRC::astrOutputInterr() {
+	if (pulseCounter == 0) {
+		TCCR5A = (1 << WGM51) | (1 << WGM50);
+		pulseCounter++;
+	} else if (pulseCounter == 4) {
+		TCCR5A = (1 << WGM51) | (1 << WGM50) | (1 << COM5A1);
+		pulseCounter = 0;
+	} else {
+		pulseCounter++;
+	}
+}
+
+void _SpektrumRC::updateCarData(CarData& cardata) {
+	int16_t tmp = str - SRC_STR_CTR;
+	if (tmp > 127) {
+		tmp = 127;
+	} else if (tmp < -128) {
+		tmp = -128;
+	}
+	cardata.rc.steer = tmp;
+	tmp = str - thr - SRC_THR_CTR;
+	if (tmp > 127) {
+		tmp = 127;
+	} else if (tmp < -128) {
+		tmp = -128;
+	}
+	cardata.rc.throttle = tmp;
+}

@@ -18,7 +18,7 @@
 
 class _Lights {
 
-	int16_t lightLevel;
+	volatile int16_t lightLevel;
 
 public:
 	_Lights() {}
@@ -39,7 +39,7 @@ public:
 
 	void setRight(bool state);
 
-	void updateCarData(class CarData& cardata);
+	void updateCarData(CarData& cardata);
 };
 
 extern _Lights Lights;

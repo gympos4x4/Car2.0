@@ -57,7 +57,6 @@
   <avrgcc.compiler.symbols.DefSymbols>
     <ListValues>
       <Value>__AVR_ATmega2560__</Value>
-      <Value>_VMDEBUG=1</Value>
       <Value>ARDUINO=10807</Value>
       <Value>ARDUINO_MAIN</Value>
       <Value>F_CPU=16000000L</Value>
@@ -69,9 +68,7 @@
   <avrgcc.compiler.directories.IncludePaths>
     <ListValues>
       <Value>../../../Car2.0</Value>
-      <Value>D:/Program Files (x86)/Arduino/libraries/Servo/src</Value>
       <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
-      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility</Value>
       <Value>D:/Program Files (x86)/Arduino/libraries</Value>
       <Value>D:/etc/Documents/Arduino/libraries</Value>
       <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
@@ -95,7 +92,6 @@
   <avrgcccpp.compiler.symbols.DefSymbols>
     <ListValues>
       <Value>__AVR_ATmega2560__</Value>
-      <Value>_VMDEBUG=1</Value>
       <Value>ARDUINO=10807</Value>
       <Value>ARDUINO_MAIN</Value>
       <Value>F_CPU=16000000L</Value>
@@ -107,9 +103,7 @@
   <avrgcccpp.compiler.directories.IncludePaths>
     <ListValues>
       <Value>../../../Car2.0</Value>
-      <Value>D:/Program Files (x86)/Arduino/libraries/Servo/src</Value>
       <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
-      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility</Value>
       <Value>D:/Program Files (x86)/Arduino/libraries</Value>
       <Value>D:/etc/Documents/Arduino/libraries</Value>
       <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
@@ -145,7 +139,7 @@
     <VisualMicroSettings>
       <VisualMicroSettings>
         <ValidatedAS7>1</ValidatedAS7>
-        <arduino.upload.port>COM4</arduino.upload.port>
+        <arduino.upload.port>COM5</arduino.upload.port>
         <arduino.board.name>mega_atmega2560</arduino.board.name>
         <arduino.board.desc>Arduino/Genuino Mega w/ ATmega2560 (Mega 2560)</arduino.board.desc>
         <arduino.board.property_bag>name=Arduino/Genuino Mega w/ ATmega2560 (Mega 2560)
@@ -466,7 +460,6 @@ build.path=C:\Users\juraj\AppData\Local\Temp\VMBuilds\Car2.0\mega_atmega2560\Deb
   <avrgcc.compiler.symbols.DefSymbols>
     <ListValues>
       <Value>__AVR_ATmega2560__</Value>
-      <Value>_VMDEBUG=1</Value>
       <Value>ARDUINO=10807</Value>
       <Value>ARDUINO_MAIN</Value>
       <Value>F_CPU=16000000L</Value>
@@ -478,9 +471,7 @@ build.path=C:\Users\juraj\AppData\Local\Temp\VMBuilds\Car2.0\mega_atmega2560\Deb
   <avrgcc.compiler.directories.IncludePaths>
     <ListValues>
       <Value>../../../Car2.0</Value>
-      <Value>D:/Program Files (x86)/Arduino/libraries/Servo/src</Value>
       <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
-      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility</Value>
       <Value>D:/Program Files (x86)/Arduino/libraries</Value>
       <Value>D:/etc/Documents/Arduino/libraries</Value>
       <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
@@ -504,7 +495,6 @@ build.path=C:\Users\juraj\AppData\Local\Temp\VMBuilds\Car2.0\mega_atmega2560\Deb
   <avrgcccpp.compiler.symbols.DefSymbols>
     <ListValues>
       <Value>__AVR_ATmega2560__</Value>
-      <Value>_VMDEBUG=1</Value>
       <Value>ARDUINO=10807</Value>
       <Value>ARDUINO_MAIN</Value>
       <Value>F_CPU=16000000L</Value>
@@ -516,9 +506,7 @@ build.path=C:\Users\juraj\AppData\Local\Temp\VMBuilds\Car2.0\mega_atmega2560\Deb
   <avrgcccpp.compiler.directories.IncludePaths>
     <ListValues>
       <Value>../../../Car2.0</Value>
-      <Value>D:/Program Files (x86)/Arduino/libraries/Servo/src</Value>
       <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
-      <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility</Value>
       <Value>D:/Program Files (x86)/Arduino/libraries</Value>
       <Value>D:/etc/Documents/Arduino/libraries</Value>
       <Value>D:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
@@ -554,7 +542,7 @@ build.path=C:\Users\juraj\AppData\Local\Temp\VMBuilds\Car2.0\mega_atmega2560\Deb
     <VisualMicroSettings>
       <VisualMicroSettings>
         <ValidatedAS7>1</ValidatedAS7>
-        <arduino.upload.port>COM4</arduino.upload.port>
+        <arduino.upload.port>COM5</arduino.upload.port>
         <arduino.board.name>mega_atmega2560</arduino.board.name>
         <arduino.board.desc>Arduino/Genuino Mega w/ ATmega2560 (Mega 2560)</arduino.board.desc>
         <arduino.board.property_bag>name=Arduino/Genuino Mega w/ ATmega2560 (Mega 2560)

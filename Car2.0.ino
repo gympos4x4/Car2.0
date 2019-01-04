@@ -2,41 +2,48 @@
 // Author: Juraj Marcin
 
 //#define DEBUG
-#define SEND_INTERVAL 500
+#define SEND_INTERVAL 250
 #define DEBUG_INTERVAL 500
+#define BAT_INTERVAL 5000
+
+/* BATTERY VALUES */
+#define NIMH_H_OFFSET 66.21f //A
+#define NIMH_K 0.01854f      //k
+#define NIMH_BASE 1.872f     //b
+#define NIMH_V_OFFSET 0.002f //c
 
 #include "ESP8266.h"
 #include "SpektrumRC.h"
 #include "TiltAlarm.h"
 #include "Lights.h"
 #include "ParkingSensors.h"
-#include "Chassis.h"
+//#include "Chassis.h"
 
 CarData cardata;
 ControllerData ctrldata;
 
 uint64_t lastDataSend = 0;
 uint64_t lastDebugSend = 0;
+volatile uint64_t lastBatCheck = 0;
 
-uint8_t adcPins[ADC_PIN_COUNT] = {1};
-uint8_t adcPin = 0;
+volatile uint8_t adcPins[ADC_PIN_COUNT] = {VBT_SENSE_PIN, LXS_SENSOR_PIN, PRS_SENSOR0_PIN};
+volatile uint8_t adcPin = 0;
+
+volatile int8_t batteryPercentage = 0;
 
 void setup() {
 	#ifdef DEBUG
 	Serial.begin(9600);
-	#endif // DEBUG
-	#ifdef DEBUG
 	Serial.println("Booting...");
 	#endif // DEBUG
-	PIN_OUT(SPKR_DIR, SPKR_PIN);
+	PIN_OUT(SPK_DIR, SPK_PIN);
 	
 	/* BOOT START SOUND */
-	PIN_WRITE_H(SPKR_PRT, SPKR_PIN);
+	PIN_WRITE_H(SPK_PRT, SPK_PIN);
 	delay(400);
-	PIN_WRITE_L(SPKR_PRT, SPKR_PIN);
+	PIN_WRITE_L(SPK_PRT, SPK_PIN);
 	
-	sei();
-	
+	sei();	
 	
 	/* SET DEFAULT VALUES */
 	ctrldata.astr_mode = 1;
@@ -45,8 +52,8 @@ void setup() {
 	Lights.init();
 	TiltAlarm.init();
 	SpektrumRC.init();
-	Chassis.init();
-	//ParkingSensors.init();
+	//Chassis.init();
+	ParkingSensors.init();
 	ESP8266.init();
 	
 	/* INIT ADC */
@@ -56,16 +63,17 @@ void setup() {
 	ADCSRA |= (1 << ADSC);
 	
 	/* BOOT END SOUND */
-	PIN_WRITE_H(SPKR_PRT, SPKR_PIN);
+	PIN_WRITE_H(SPK_PRT, SPK_PIN);
 	delay(200);
-	PIN_WRITE_L(SPKR_PRT, SPKR_PIN);
+	PIN_WRITE_L(SPK_PRT, SPK_PIN);
 	delay(200);
-	PIN_WRITE_H(SPKR_PRT, SPKR_PIN);
+	PIN_WRITE_H(SPK_PRT, SPK_PIN);
 	delay(200);
-	PIN_WRITE_L(SPKR_PRT, SPKR_PIN);
+	PIN_WRITE_L(SPK_PRT, SPK_PIN);
+	delay(500);
 	
 	/* START ADC CONVERSION */
-	startADCConverstion(adcPins[adcPin]);
+	startADCConversion(adcPins[adcPin]);
 	
 	#ifdef DEBUG
 	Serial.println("Booted!");
@@ -75,7 +83,7 @@ void setup() {
 void loop() {
 	TiltAlarm.loop();
 	SpektrumRC.loop(ctrldata.astr_mode);
-	Chassis.setHeight(ctrldata.height);
+	//Chassis.setHeight(ctrldata.height);
 	ctrldata.height = 0;
 
 	updateCarData();
@@ -93,8 +101,6 @@ void loop() {
 		lastDebugSend = millis();
 	}
 	#endif // DEBUG
-
-	delay(10);
 }
 
 void sendDebug() {
@@ -112,31 +118,53 @@ void sendDebug() {
 }
 
 void updateCarData() {
-	cardata.battery_percentage = (analogRead(VBAT_SENSE_PIN) - 700) / 2;
+	cardata.battery_percentage = batteryPercentage;
 	Lights.updateCarData(cardata);
-	ParkingSensors.update_cardata(cardata);
-	SpektrumRC.updateCarData(cardata);
 	TiltAlarm.updateCarData(cardata);
+	ParkingSensors.updateCarData(cardata);
+	SpektrumRC.updateCarData(cardata);
 }
 
-void startADCConverstion(uint8_t pin) {
+void startADCConversion(uint8_t pin) {
 	ADCSRB = (ADCSRB & ~(1 << MUX5)) | (pin & (1 << MUX5));
 	ADMUX = (1 << REFS0) | (pin & 0x07);
 	ADCSRA |= (1 << ADSC);
 }
 
+int8_t calculateBatteryPrecentage(float voltage)
+{
+	float percent = (1 / (pow(NIMH_BASE, NIMH_H_OFFSET - voltage / NIMH_K) + 1)) + NIMH_V_OFFSET;
+	return min(100,(int8_t)(100*percent));
+}
+
 ISR(ADC_vect) {
-	uint8_t low = ADCL;
+	/*uint8_t low = ADCL;
 	uint8_t high = ADCH;
-	int16_t reading = (high << 8) | low;
+	int16_t reading = (high << 8) | low;*/
+	int16_t reading = ADC;
 	if (adcPins[adcPin] >= 8 && adcPins[adcPin] <= 15) {
 		ParkingSensors.interr(reading);
-		} else if (adcPins[adcPin] == 1) {
+	} else if (adcPins[adcPin] == LXS_SENSOR_PIN) {
 		Lights.interr(reading);
+	} else if (adcPins[adcPin] == VBT_SENSE_PIN) {
+		batteryPercentage = calculateBatteryPrecentage((float)reading / 614.4f);
+		lastBatCheck = millis();
 	}
-	adcPin++;
-	if (adcPin >= ADC_PIN_COUNT) {
-		adcPin = 0;
+	adcPin = ADC_NEXT(adcPin);
+	if (adcPins[adcPin] == VBT_SENSE_PIN && lastBatCheck + BAT_INTERVAL > millis()) {
+		adcPin = ADC_NEXT(adcPin);
 	}
-	startADCConverstion(adcPins[adcPin]);
+	startADCConversion(adcPins[adcPin]);
+}
+
+ISR(TIMER4_CAPT_vect) {
+	SpektrumRC.strInputInterr();
+}
+
+ISR(TIMER5_CAPT_vect) {
+	SpektrumRC.thrInputInterr();
+}
+
+ISR(TIMER5_COMPA_vect) {
+	SpektrumRC.astrOutputInterr();
 }

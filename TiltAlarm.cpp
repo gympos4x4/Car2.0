@@ -60,14 +60,10 @@ int16_t _TiltAlarm::getAngle(int16_t x, int16_t z) {
 }
 
 void _TiltAlarm::signal(bool value) {
-#ifdef PIEZO_PIN
-	tone(PIEZO_PIN, 440, 500);
-#else
-	PIN_WRITE(SPKR_PRT, SPKR_PIN, value);
-#endif
+	PIN_WRITE(SPK_PRT, SPK_PIN, value);
 }
 
-void _TiltAlarm::updateCarData(class CarData& cardata) {
+void _TiltAlarm::updateCarData(CarData& cardata) {
 	cardata.tilt.degrees = rotZ - TA_ALERT_OFFSET;
 	cardata.tilt.tilted = tilted();
 }
