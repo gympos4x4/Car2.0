@@ -138,9 +138,6 @@ int8_t calculateBatteryPrecentage(float voltage)
 }
 
 ISR(ADC_vect) {
-	/*uint8_t low = ADCL;
-	uint8_t high = ADCH;
-	int16_t reading = (high << 8) | low;*/
 	int16_t reading = ADC;
 	if (adcPins[adcPin] >= 8 && adcPins[adcPin] <= 15) {
 		ParkingSensors.interr(reading);

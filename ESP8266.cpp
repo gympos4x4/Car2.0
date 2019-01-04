@@ -57,8 +57,6 @@ bool _ESP8266::sendCarData(CarData* data) {
 	if (gotResponse) {
 		for(uint8_t i = 0; i < sizeof(CarData); i++) {
 			ESP_SERIAL.write(((uint8_t*)data)[i]);
-			//ESP_SERIAL.print(((byte*)data)[i] / 16, HEX);
-			//ESP_SERIAL.print(((byte*)data)[i] % 16, HEX);
 		}
 		ESP_SERIAL.println("   ");
 		return true;
@@ -72,16 +70,14 @@ void _ESP8266::loop(ControllerData* data) {
 		char serRead = ESP_SERIAL.read();
 		if (serRead == '+') {
 			#ifdef DEBUG
-			Serial.println("<DATA>");
+			Serial.print("<DATA>");
 			#endif // DEBUG
 			uint8_t buffer[6];
 			ESP_SERIAL.readBytes(buffer, 6);
 			for (uint8_t i = 0; i < sizeof(ControllerData); i++) {
-				uint8_t val = ESP_SERIAL.read();
-				((uint8_t*)data)[i] = val;
+				((uint8_t*)data)[i] = ESP_SERIAL.read();
 				#ifdef DEBUG
-				//Serial.print(val, HEX); Serial.print(' ');
-				/*Serial.print(((uint8_t*)data)[i], HEX); Serial.println();*/
+				Serial.print(((uint8_t*)data)[i], HEX); Serial.print(' ');
 				#endif // DEBUG
 			}
 			#ifdef DEBUG
@@ -103,9 +99,9 @@ void _ESP8266::serialFind(const char target[], uint8_t targetLenght) {
 	while (i < targetLenght) {
 		if (ESP_SERIAL.available()) {
 			if (ESP_SERIAL.read() == target[i])
-			i++;
+				i++;
 			else
-			i = 0;
+				i = 0;
 		}
 	}
 }
