@@ -30,7 +30,7 @@ struct CarData
 
 	//ParkingSensors
 	struct {
-		int16_t sensor_data[8];
+		int16_t sensor_data[1];
 	} parking;
 };
 

@@ -41,7 +41,7 @@ class _TiltAlarm {
 
 	void loop();
 	
-	void updateCarData(class CarData& cardata);
+	void updateCarData(CarData& cardata);
 
 	private:
 

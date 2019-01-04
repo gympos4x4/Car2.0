@@ -17,6 +17,9 @@
 
 class _ESP8266 {
 	
+	private:
+	bool gotResponse;
+	
 	public:
 	void init();
 
