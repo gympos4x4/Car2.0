@@ -3,7 +3,7 @@
 
 #include "ESP8266.h"
 
-//#define DEBUG
+#define DEBUG
 
 _ESP8266 ESP8266;
 
@@ -45,7 +45,7 @@ void _ESP8266::init() {
 bool _ESP8266::sendCarData(CarData* data) {
 	if (gotResponse) {
 		ESP_SERIAL.print("AT+CIPSEND=");
-		ESP_SERIAL.println(sizeof(CarData) + 3);
+		ESP_SERIAL.println(sizeof(CarData));
 	}
 	uint64_t cmdtxend = millis();
 	while (millis() < cmdtxend + ES_TIMEOUT) {
@@ -58,7 +58,6 @@ bool _ESP8266::sendCarData(CarData* data) {
 		for(uint8_t i = 0; i < sizeof(CarData); i++) {
 			ESP_SERIAL.write(((uint8_t*)data)[i]);
 		}
-		ESP_SERIAL.println("   ");
 		return true;
 	}
 	return false;

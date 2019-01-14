@@ -81,7 +81,7 @@ void _SpektrumRC::updateCarData(CarData& cardata) {
 		tmp = -128;
 	}
 	cardata.rc.steer = tmp;
-	tmp = str - thr - SRC_THR_CTR;
+	tmp = thr - SRC_THR_CTR;
 	if (tmp > 127) {
 		tmp = 127;
 	} else if (tmp < -128) {

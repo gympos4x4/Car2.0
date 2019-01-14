@@ -30,6 +30,6 @@ void _ParkingSensors::interr(int16_t reading) {
 
 void _ParkingSensors::updateCarData(CarData& cardata) {
 	for (uint8_t i = 0; i < PRS_SENSOR_COUNT; i++) {
-		cardata.parking.sensor_data[i] = sensorData[i];
+		cardata.parking.sensor_data[i] = sensorData[i] - 128;
 	}
 }
