@@ -6,7 +6,7 @@
 struct CarData
 {
 	//Misc car data
-	int8_t battery_percentage;
+	int16_t battery_percentage;
 
 	//TiltAlarm
 	struct
@@ -30,7 +30,7 @@ struct CarData
 
 	//ParkingSensors
 	struct {
-		int16_t sensor_data[1];
+		int8_t sensor_data[4];
 	} parking;
 };
 

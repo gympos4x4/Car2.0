@@ -6,20 +6,22 @@
 _Chassis Chassis;
 
 void _Chassis::init() {
-	pinMode(CHS_MOT_UP, OUTPUT);
-	pinMode(CHS_MOT_DW, OUTPUT);
+	PIN_OUT(CHS_DIR_DIR, CHS_DIR_PIN);
+	PIN_OUT(CHS_PWM_DIR, CHS_PWM_PIN);
 }
 
 void _Chassis::setHeight(int8_t height) {
-	if (height > 0/* && currentHeigth != 100*/) {
-		digitalWrite(CHS_MOT_UP, HIGH);
+	if (height > 0) {
+		PIN_WRITE_H(CHS_DIR_PORT, CHS_DIR_PIN);
+		PIN_WRITE_H(CHS_PWM_PORT, CHS_PWM_PIN);
 		delay(200);
-		digitalWrite(CHS_MOT_UP, LOW);
-		currentHeigth = 100;
-	} else if (height < 0/* && currentHeigth != -100*/) {
-		digitalWrite(CHS_MOT_DW, HIGH);
+		PIN_WRITE_L(CHS_PWM_PORT, CHS_PWM_PIN);
 		delay(200);
-		digitalWrite(CHS_MOT_DW, LOW);
-		currentHeigth = -100;
+	} else if (height < 0) {
+		PIN_WRITE_L(CHS_DIR_PORT, CHS_DIR_PIN);
+		PIN_WRITE_H(CHS_PWM_PORT, CHS_PWM_PIN);
+		delay(200);
+		PIN_WRITE_L(CHS_PWM_PORT, CHS_PWM_PIN);
+		delay(200);
 	}
 }

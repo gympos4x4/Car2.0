@@ -55,8 +55,12 @@
 #define SRC_ASTR_PIN PL3
 
 //CHASSIS
-#define CHS_MOT_UP 4
-#define CHS_MOT_DW 39
+#define CHS_DIR_DIR DDRG
+#define CHS_DIR_PORT PORTG
+#define CHS_DIR_PIN PG2
+#define CHS_PWM_DIR DDRG
+#define CHS_PWM_PORT PORTG
+#define CHS_PWM_PIN PG5
 
 #else
 
@@ -65,7 +69,7 @@
 #define VBT_SENSE_PIN 0
 
 //ADC
-#define ADC_PIN_COUNT 3
+#define ADC_PIN_COUNT 6
 #define ADC_NEXT(ADCPIN) (ADCPIN + 1 >= ADC_PIN_COUNT ? 0 : ADCPIN + 1)
 
 //ESP8266
@@ -76,8 +80,11 @@
 #define ESP_SERIAL Serial2
 
 //PARKINGSENSORS
-#define PRS_SENSOR_COUNT 1
+#define PRS_SENSOR_COUNT 4
 #define PRS_SENSOR0_PIN 8
+#define PRS_SENSOR1_PIN 9
+#define PRS_SENSOR2_PIN 10
+#define PRS_SENSOR3_PIN 11
 #define PRS_IR_DIR DDRJ
 #define PRS_IR_PRT PORTJ
 #define PRS_IR_PIN PJ7
@@ -103,8 +110,12 @@
 #define SRC_ASTR_PIN PL3
 
 //CHASSIS
-#define CHS_MOT_UP 4
-#define CHS_MOT_DW 39
+#define CHS_DIR_DIR DDRG
+#define CHS_DIR_PORT PORTG
+#define CHS_DIR_PIN PG2
+#define CHS_PWM_DIR DDRB
+#define CHS_PWM_PORT PORTB
+#define CHS_PWM_PIN PB6
 
 #endif /* BOARD_REV */
 

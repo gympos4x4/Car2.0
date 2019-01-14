@@ -12,8 +12,6 @@
 
 #include "pindef.h"
 
-#define ES_TIMEOUT 10
-
 class _Chassis {
 	
 	uint8_t currentHeigth;
