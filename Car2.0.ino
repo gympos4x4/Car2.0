@@ -26,7 +26,7 @@ uint64_t lastDataSend = 0;
 uint64_t lastDebugSend = 0;
 volatile uint64_t lastBatCheck = 0;
 
-volatile uint8_t adcPins[ADC_PIN_COUNT] = {VBT_SENSE_PIN, LXS_SENSOR_PIN, PRS_SENSOR0_PIN, PRS_SENSOR1_PIN, PRS_SENSOR2_PIN, PRS_SENSOR3_PIN};
+volatile uint8_t adcPins[ADC_PIN_COUNT] = {VBT_SENSE_PIN, LXS_SENSOR_PIN/*, PRS_SENSOR0_PIN, PRS_SENSOR1_PIN, PRS_SENSOR2_PIN, PRS_SENSOR3_PIN*/};
 volatile uint8_t adcPin = 0;
 
 volatile int16_t batteryPercentage = 0;
@@ -108,7 +108,7 @@ void loop() {
 		lastDebugSend = millis();
 	}
 	#endif // DEBUG
-	ctrldata.height = 0;
+	//ctrldata.height = 0;
 }
 
 void sendDebug() {
