@@ -14,12 +14,20 @@
 
 class _Chassis {
 	
-	uint8_t currentHeigth;
-	
 	public:
+	volatile int8_t direction;	
+	volatile bool maxLow = false;
+	volatile bool maxHigh = false;
+	volatile int64_t qRots = 0;
+	volatile int64_t qRotsChange = 0;
+	
 	void init();
 
 	void setHeight(int8_t height);
+	
+	void highInterr();
+	
+	void lowInterr();
 };
 
 extern _Chassis Chassis;
