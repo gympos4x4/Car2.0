@@ -65,27 +65,42 @@ bool _ESP8266::sendCarData(CarData* data) {
 
 void _ESP8266::loop(ControllerData* data) {
 	uint8_t i = 0;
+	bool timeoutfail = false;
+	uint64_t start = 0;
 	while (ESP_SERIAL.available()) {
 		char serRead = ESP_SERIAL.read();
 		if (serRead == '+') {
-			#ifdef DEBUG
-			Serial.print("<DATA>");
-			#endif // DEBUG
 			uint8_t buffer[6];
 			for (uint8_t j = 0; j < 6; j++) {
-				while(!ESP_SERIAL.available());
+				start = millis();
+				while(!ESP_SERIAL.available()) {
+					if (millis() > start + ES_TIMEOUT) {
+						timeoutfail = true;
+						break;
+					}
+					if (timeoutfail) break;
+				}
 				buffer[j] = ESP_SERIAL.read();
 			}
-			for (uint8_t k = 0; k < sizeof(ControllerData); k++) {
-				while(!ESP_SERIAL.available());
-				((uint8_t*)data)[k] = ESP_SERIAL.read();
+			if (timeoutfail) {
 				#ifdef DEBUG
-				Serial.print(((uint8_t*)data)[k], HEX); Serial.print(' ');
+				Serial.println("PACKET TIMEOUT")
+				#endif // DEBUG
+			} else {
+				#ifdef DEBUG
+				Serial.print("<DATA>");
+				#endif // DEBUG
+				for (uint8_t k = 0; k < sizeof(ControllerData); k++) {
+					while(!ESP_SERIAL.available());
+					((uint8_t*)data)[k] = ESP_SERIAL.read();
+					#ifdef DEBUG
+					Serial.print(((uint8_t*)data)[k], HEX); Serial.print(' ');
+					#endif // DEBUG
+				}
+				#ifdef DEBUG
+				Serial.println("</DATA>");
 				#endif // DEBUG
 			}
-			#ifdef DEBUG
-			Serial.println("</DATA>");
-			#endif // DEBUG
 		}
 		if (i > 64) { Serial.println("broke"); break; }
 		i++;
