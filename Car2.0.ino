@@ -92,6 +92,7 @@ void loop() {
 	SpektrumRC.loop(ctrldata.astr_mode);
 	if (ctrldata.height)
 		Chassis.setHeight(ctrldata.height);
+	ctrldata.height = 0;
 	
 	updateCarData();
 
@@ -108,7 +109,6 @@ void loop() {
 		lastDebugSend = millis();
 	}
 	#endif // DEBUG
-	//ctrldata.height = 0;
 }
 
 void sendDebug() {
