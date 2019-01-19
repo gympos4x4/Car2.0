@@ -11,6 +11,7 @@
 #endif
 
 #include "pindef.h"
+#include <Servo.h>
 
 class _Chassis {
 	
@@ -20,6 +21,8 @@ class _Chassis {
 	volatile bool maxHigh = false;
 	volatile int64_t qRots = 0;
 	volatile int64_t qRotsChange = 0;
+	
+	Servo s;
 	
 	void init();
 
