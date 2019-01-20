@@ -12,7 +12,7 @@
 
 #include "pindef.h"
 
-#define  CH_TIMEOUT 500
+#define  CH_TIMEOUT 100
 #define CH_STEP 5
 
 class _Chassis {
