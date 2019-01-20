@@ -8,10 +8,10 @@ _Lights Lights;
 void _Lights::init() {
 	PIN_OUT(LXS_DIR, LXS_C0_FRONT_PIN);
 	PIN_OUT(LXS_DIR, LXS_C1_REAR_PIN);
-	PIN_OUT(LXS_DIR, LXS_C2_REV0_PIN);
-	PIN_OUT(LXS_DIR, LXS_C3_REV1_PIN);
-	PIN_OUT(LXS_DIR, LXS_C4_LEFT_PIN);
-	PIN_OUT(LXS_DIR, LXS_C5_RIGHT_PIN);
+	PIN_OUT(LXS_DIR, LXS_C2_LIF_PIN);
+	PIN_OUT(LXS_DIR, LXS_C3_LIR_PIN);
+	PIN_OUT(LXS_DIR, LXS_C4_RIF_PIN);
+	PIN_OUT(LXS_DIR, LXS_C5_RIR_PIN);
 }
 
 void _Lights::loop(int8_t steer) {
@@ -61,15 +61,12 @@ void _Lights::setRear(bool state) {
 	PIN_WRITE(LXS_PORT, LXS_C1_REAR_PIN, state);
 }
 
-void _Lights::setReverse(bool state) {
-	PIN_WRITE(LXS_PORT, LXS_C2_REV0_PIN, state);
-	PIN_WRITE(LXS_PORT, LXS_C3_REV1_PIN, state);
-}
-
 void _Lights::setLeft(bool state) {
-	PIN_WRITE(LXS_PORT, LXS_C4_LEFT_PIN, state);
+	PIN_WRITE(LXS_PORT, LXS_C2_LIF_PIN, state);
+	PIN_WRITE(LXS_PORT, LXS_C3_LIR_PIN, state);
 }
 
 void _Lights::setRight(bool state) {
-	PIN_WRITE(LXS_PORT, LXS_C5_RIGHT_PIN, state);
+	PIN_WRITE(LXS_PORT, LXS_C4_RIF_PIN, state);
+	PIN_WRITE(LXS_PORT, LXS_C5_RIR_PIN, state);
 }
