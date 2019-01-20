@@ -11,7 +11,9 @@
 #endif
 
 #include "pindef.h"
-#include <Servo.h>
+
+#define  CH_TIMEOUT 500
+#define CH_STEP 5
 
 class _Chassis {
 	
@@ -20,9 +22,7 @@ class _Chassis {
 	volatile bool maxLow = false;
 	volatile bool maxHigh = false;
 	volatile int64_t qRots = 0;
-	volatile int64_t qRotsChange = 0;
-	
-	Servo s;
+	volatile int32_t qRotsChange = 0;
 	
 	void init();
 

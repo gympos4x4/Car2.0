@@ -5,7 +5,6 @@
 #define _PINDEF_H_
 
 #define BOARD_REV 1
-//#define PMC_REV 0
 
 #define PIN_OUT(DIR, PIN) (DIR |= _BV(PIN))
 #define PIN_IN(DIR, PIN) (DIR &= ~_BV(PIN))

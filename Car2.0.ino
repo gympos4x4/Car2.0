@@ -34,7 +34,9 @@ volatile int16_t batteryPercentage = 0;
 void setup() {
 	#ifdef DEBUG
 	Serial.begin(9600);
-	Serial.println("Booting...");
+	Serial.println("BOOTING COLOS...");
+	Serial.println("3 Devices Run ColOS");
+	Serial.println("Thankfully, not this one...");
 	#endif // DEBUG
 	
 	PIN_OUT(SPK_DIR, SPK_PIN);
@@ -81,7 +83,7 @@ void setup() {
 	startADCConversion(adcPins[adcPin]);
 	
 	#ifdef DEBUG
-	Serial.println("Booted!");
+	Serial.println("BOOT OK!");
 	#endif // DEBUG*/
 	
 	
@@ -93,6 +95,7 @@ void loop() {
 	if (ctrldata.height)
 		Chassis.setHeight(ctrldata.height);
 	ctrldata.height = 0;
+	Chassis.qRotsChange = 0;
 	
 	updateCarData();
 
@@ -105,7 +108,7 @@ void loop() {
 
 	#ifdef DEBUG
 	if (millis() > lastDebugSend + DEBUG_INTERVAL) {
-		sendDebug();
+		//sendDebug();
 		lastDebugSend = millis();
 	}
 	#endif // DEBUG
@@ -114,7 +117,7 @@ void loop() {
 void sendDebug() {
 	Serial.println(millis());
 	Serial.print("car.battery_percentage=");Serial.println(cardata.battery_percentage);
-	//Serial.print("car.tilt.degrees=");Serial.println(cardata.tilt.degrees);
+	Serial.print("car.tilt.degrees=");Serial.println(cardata.tilt.degrees);
 	/*Serial.print("car.tilt.tilted=");Serial.println(cardata.tilt.tilted);
 	Serial.print("car.lights.is_below_threshold=");Serial.println(cardata.lights.is_below_threshold);
 	Serial.print("car.lights.level=");Serial.println(cardata.lights.level);

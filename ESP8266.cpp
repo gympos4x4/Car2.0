@@ -10,7 +10,7 @@ _ESP8266 ESP8266;
 void _ESP8266::init() {
 	#ifdef DEBUG
 	Serial.begin(9600);
-	Serial.println("Starting server...");
+	Serial.println("DECONFIGURING NETWORK...");
 	#endif // DEBUG
 	PIN_OUT(ESP_DIR, ESP_RST_PIN);
 	PIN_WRITE_H(ESP_PRT, ESP_RST_PIN);
@@ -37,7 +37,7 @@ void _ESP8266::init() {
 	cmd("AT+CIPDINFO=0");
 	serialFind("OK", 2);
 	#ifdef DEBUG
-	Serial.println("Server started!");
+	Serial.println("NETWORK CONFIGURATION DONE");
 	#endif // DEBUG
 	gotResponse = true;
 }
@@ -84,7 +84,7 @@ void _ESP8266::loop(ControllerData* data) {
 			}
 			if (timeoutfail) {
 				#ifdef DEBUG
-				Serial.println("PACKET TIMEOUT")
+				Serial.println("PACKET TIMEOUT");
 				#endif // DEBUG
 			} else {
 				#ifdef DEBUG
