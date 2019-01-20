@@ -41,8 +41,6 @@ public:
 
 	void setRear(bool state);
 
-	void setReverse(bool state);
-
 	void setLeft(bool state);
 
 	void setRight(bool state);
