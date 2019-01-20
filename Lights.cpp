@@ -14,6 +14,32 @@ void _Lights::init() {
 	PIN_OUT(LXS_DIR, LXS_C5_RIGHT_PIN);
 }
 
+void _Lights::loop(int8_t steer) {
+	if (steer > LI_STR_R_TRESHOLD) {
+		if (millis() > blinkStart + LI_BLINK_TIME) {
+			if (left) left = false;
+			else left = true;
+			blinkStart = millis();
+			setLeft(left);
+		}
+	} else {
+		left = false;
+		setLeft(false);
+	}
+	if (steer < LI_STR_L_TRESHOLD) {
+		if (millis() > blinkStart + LI_BLINK_TIME) {
+			if (right) right = false;
+			else right = true;
+			blinkStart = millis();
+			setRight(right);
+		}
+		setRight(right);
+	} else {
+		right = false;
+		setRight(false);
+	}
+}
+
 void _Lights::interr(int16_t reading) {
 	bool below = LI_BELOW_TRESHOLD(lightLevel);
 	lightLevel = reading;

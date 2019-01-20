@@ -98,6 +98,7 @@ void loop() {
 	Chassis.qRotsChange = 0;
 	
 	updateCarData();
+	Lights.loop(cardata.rc.steer);
 
 	if (millis() > lastDataSend + SEND_INTERVAL) {
 		ESP8266.sendCarData(&cardata);
@@ -108,7 +109,7 @@ void loop() {
 
 	#ifdef DEBUG
 	if (millis() > lastDebugSend + DEBUG_INTERVAL) {
-		//sendDebug();
+		sendDebug();
 		lastDebugSend = millis();
 	}
 	#endif // DEBUG
@@ -117,11 +118,11 @@ void loop() {
 void sendDebug() {
 	Serial.println(millis());
 	Serial.print("car.battery_percentage=");Serial.println(cardata.battery_percentage);
-	Serial.print("car.tilt.degrees=");Serial.println(cardata.tilt.degrees);
+	/*Serial.print("car.tilt.degrees=");Serial.println(cardata.tilt.degrees);
 	/*Serial.print("car.tilt.tilted=");Serial.println(cardata.tilt.tilted);
 	Serial.print("car.lights.is_below_threshold=");Serial.println(cardata.lights.is_below_threshold);
 	Serial.print("car.lights.level=");Serial.println(cardata.lights.level);
-	Serial.print("car.rc.throttle=");Serial.println(cardata.rc.throttle);
+	Serial.print("car.rc.throttle=");Serial.println(cardata.rc.throttle);*/
 	Serial.print("car.rc.steer=");Serial.println(cardata.rc.steer);
 	//Serial.print("car.parking.sensor_data=");Serial.println(cardata.parking.sensor_data[0]);*/
 	Serial.print("ctrl.height=");Serial.println(ctrldata.height);

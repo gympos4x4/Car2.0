@@ -15,10 +15,16 @@
 
 #define LI_TRESHOLD 36 // turn on lights below this value
 #define LI_BELOW_TRESHOLD(value) (value < LI_TRESHOLD)
+#define LI_BLINK_TIME 600
+#define LI_STR_R_TRESHOLD 10
+#define LI_STR_L_TRESHOLD -10
 
 class _Lights {
 
 	volatile int16_t lightLevel;
+	bool left = false;
+	bool right = false;
+	uint64_t blinkStart = 0;
 
 public:
 	_Lights() {}
@@ -26,6 +32,8 @@ public:
 
 public:
 	void init();
+	
+	void loop(int8_t steer);
 
 	void interr(int16_t reading);
 
