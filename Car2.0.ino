@@ -36,7 +36,6 @@ void setup() {
 	Serial.begin(9600);
 	Serial.println("BOOTING COLOS...");
 	Serial.println("3 Devices Run ColOS");
-	Serial.println("Thankfully, not this one...");
 	#endif // DEBUG
 	
 	PIN_OUT(SPK_DIR, SPK_PIN);
@@ -182,14 +181,14 @@ ISR(TIMER5_COMPA_vect) {
 }
 
 // CHASSIS ENDSTOP TIMERS //
-/*
+
 ISR(INT2_vect) {
 	Chassis.maxHigh = true;
 }
 
 ISR(INT3_vect) {
-	Chassis.maxHigh = false;
-}*/
+	Chassis.maxLow = true;
+}
 
 // CHASSIS REV SENSORS TIMER //
 
