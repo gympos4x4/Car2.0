@@ -26,7 +26,7 @@ void _ESP8266::init() {
 	serialFind("OK", 2);
 	cmd("AT+CWDHCP_CUR=2,0");
 	serialFind("OK", 2);
-	cmd("AT+CWSAP_CUR=\"ColumbaRacing\",\"HelloWorld123\",13,3,1,0");
+	cmd("AT+CWSAP_CUR=\"wait a minute\",\"hey_hey_hey\",1,3,1,0");
 	serialFind("OK", 2);
 	//cmd("AT+CIPMUX=1");
 	cmd("AT+CIPMUX=0");
