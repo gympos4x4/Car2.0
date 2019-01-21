@@ -13,11 +13,11 @@
 #define NIMH_V_OFFSET 0.002f //c
 
 #include "ESP8266.h"
-#include "SpektrumRC.h"
+//#include "SpektrumRC.h"
 #include "TiltAlarm.h"
 #include "Lights.h"
 //#include "ParkingSensors.h"
-#include "Chassis.h"
+//#include "Chassis.h"
 
 CarData cardata;
 ControllerData ctrldata;
@@ -53,13 +53,13 @@ void setup() {
 	//WDTCSR |= (1 << WDP2) | (1 << WDP1) | (1 << WDE);//
 	
 	// SET DEFAULT VALUES //
-	ctrldata.astr_mode = 1;
+	//ctrldata.astr_mode = 1;
 	
 	// INIT DEVICES //
 	Lights.init();
 	TiltAlarm.init();
-	SpektrumRC.init();
-	Chassis.init();
+	//SpektrumRC.init();
+	//Chassis.init();
 	//ParkingSensors.init();
 	ESP8266.init();
 	
@@ -91,11 +91,11 @@ void setup() {
 
 void loop() {
 	TiltAlarm.loop();
-	SpektrumRC.loop(ctrldata.astr_mode);
-	if (ctrldata.height)
+	//SpektrumRC.loop(ctrldata.astr_mode);
+	/*if (ctrldata.height)
 		Chassis.setHeight(ctrldata.height);
 	ctrldata.height = 0;
-	Chassis.qRotsChange = 0;
+	Chassis.qRotsChange = 0;*/
 	
 	updateCarData();
 	Lights.loop(cardata.rc.steer);
@@ -123,10 +123,10 @@ void sendDebug() {
 	Serial.print("car.lights.is_below_threshold=");Serial.println(cardata.lights.is_below_threshold);
 	Serial.print("car.lights.level=");Serial.println(cardata.lights.level);
 	Serial.print("car.rc.throttle=");Serial.println(cardata.rc.throttle);*/
-	Serial.print("car.rc.steer=");Serial.println(cardata.rc.steer);
+	//Serial.print("car.rc.steer=");Serial.println(cardata.rc.steer);
 	//Serial.print("car.parking.sensor_data=");Serial.println(cardata.parking.sensor_data[0]);*/
-	Serial.print("ctrl.height=");Serial.println(ctrldata.height);
-	Serial.print("ctrl.astr_mode=");Serial.println(ctrldata.astr_mode);
+	//Serial.print("ctrl.height=");Serial.println(ctrldata.height);
+	//Serial.print("ctrl.astr_mode=");Serial.println(ctrldata.astr_mode);
 }
 
 void updateCarData() {
@@ -134,7 +134,7 @@ void updateCarData() {
 	Lights.updateCarData(cardata);
 	TiltAlarm.updateCarData(cardata);
 	//ParkingSensors.updateCarData(cardata);
-	SpektrumRC.updateCarData(cardata);
+	//SpektrumRC.updateCarData(cardata);
 }
 
 void startADCConversion(uint8_t pin) {
@@ -168,7 +168,7 @@ ISR(ADC_vect) {
 }
 
 // SPEKTRUM TIMERS //
-
+/*
 ISR(TIMER4_CAPT_vect) {
 	SpektrumRC.strInputInterr();
 }
@@ -180,7 +180,7 @@ ISR(TIMER5_CAPT_vect) {
 ISR(TIMER5_COMPA_vect) {
 	SpektrumRC.astrOutputInterr();
 }
-
+*/
 // CHASSIS ENDSTOP TIMERS //
 /*
 ISR(INT2_vect) {
@@ -192,8 +192,9 @@ ISR(INT3_vect) {
 }*/
 
 // CHASSIS REV SENSORS TIMER //
-
+/*
 ISR(TIMER1_CAPT_vect) {
 	Chassis.qRots += Chassis.direction;
 	Chassis.qRotsChange++;;
 }
+*/
