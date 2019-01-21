@@ -15,8 +15,8 @@
 #include <Wire.h>
 
 #define TA_ALERT_TRESHOLD 10
-#define TA_ALERT_ANGLE_POS 25
-#define TA_ALERT_ANGLE_NEG -25
+#define TA_ALERT_ANGLE_POS 23
+#define TA_ALERT_ANGLE_NEG -20
 #define TA_ALERT_OFFSET 90
 #define TA_MPU_ADDR 0x68 // MPU-6050 #1 IC2 address
 #define TA_PWR_MGMT_1 0x6B
