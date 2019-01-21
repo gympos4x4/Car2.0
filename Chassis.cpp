@@ -39,7 +39,7 @@ void _Chassis::setHeight(int8_t height) {
 	} else if (height < 0) {
 		if (maxLow) return;
 		direction = -1;
-		OCR2B = 16;
+		OCR2B = 19;
 		uint64_t start = millis();
 		while(qRotsChange < CH_STEP && millis() < start + CH_TIMEOUT && !maxLow);
 		OCR2B = 23;
