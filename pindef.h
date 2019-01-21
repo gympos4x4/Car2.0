@@ -12,6 +12,7 @@
 #define PIN_WRITE(PORT, PIN, VAL) (VAL ? PORT |= _BV(PIN) : PORT &= ~_BV(PIN))
 #define PIN_WRITE_H(PORT, PIN) (PORT |= _BV(PIN))
 #define PIN_WRITE_L(PORT, PIN) (PORT &= ~_BV(PIN))
+#define PIN_READ(PORT, PIN) (PORT & _BV(PIN))
 
 #if BOARD_REV == 0
 

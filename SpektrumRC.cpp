@@ -23,9 +23,9 @@ void _SpektrumRC::init() {
 }
 
 void _SpektrumRC::loop(int8_t astrMode) {
-	if (astrMode > 0) {
+	if (astrMode < 0) {
 		OCR5A = str;
-	} else if (astrMode < 0) {
+	} else if (astrMode > 0) {
 		OCR5A = SRC_STR_INV - str;
 	} else {
 		OCR5A = SRC_STR_CTR;

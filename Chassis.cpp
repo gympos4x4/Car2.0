@@ -19,12 +19,12 @@ void _Chassis::init() {
 	PIN_OUT(DDRC, PC6);
 	PIN_WRITE_L(PORTC, PC6);
 	// SETUP ENDSTOP INTERRUPTS //
-	EICRA = (1 << ISC31) | (1 << ISC30) | (1 << ISC21) | (1 << ISC20);
-	EIMSK = (1 << INT3) | (1 << INT2);
+	/*EICRA = (1 << ISC30) | (1 << ISC20);
+	EIMSK = (1 << INT3) | (1 << INT2);*/
 	// SET REV SENSOR TIMER //
-	TCCR1A = 0;
+	/*TCCR1A = 0;
 	TCCR1B = (1 << ICES5) | (1 << CS10);
-	TIMSK1 = (1 << ICIE1);
+	TIMSK1 = (1 << ICIE1);*/
 }
 
 void _Chassis::setHeight(int8_t height) {
@@ -33,15 +33,15 @@ void _Chassis::setHeight(int8_t height) {
 		direction = 1;
 		OCR2B = 31;
 		uint64_t start = millis();
-		while(qRotsChange < CH_STEP && millis() < start + CH_TIMEOUT && !maxHigh);
+		while(qRotsChange < CH_STEP && millis() < start + height && !maxHigh);
 		OCR2B = 23;
 		maxLow = false;
 	} else if (height < 0) {
 		if (maxLow) return;
 		direction = -1;
-		OCR2B = 19;
+		OCR2B = 16;
 		uint64_t start = millis();
-		while(qRotsChange < CH_STEP && millis() < start + CH_TIMEOUT && !maxLow);
+		while(qRotsChange < CH_STEP && millis() < start + abs(height) && !maxLow);
 		OCR2B = 23;
 		maxHigh = false;
 	}

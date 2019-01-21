@@ -14,7 +14,7 @@
 #include "pindef.h"
 
 #define SRC_STR_INV 742
-#define SRC_STR_CTR 371
+#define SRC_STR_CTR 382
 #define SRC_THR_CTR 371
 
 class _SpektrumRC {
