@@ -117,11 +117,11 @@ void loop() {
 void sendDebug() {
 	Serial.println(millis());
 	Serial.print("car.battery_percentage=");Serial.println(cardata.battery_percentage);
-	/*Serial.print("car.tilt.degrees=");Serial.println(cardata.tilt.degrees);
+	Serial.print("car.tilt.degrees=");Serial.println(cardata.tilt.degrees);
 	/*Serial.print("car.tilt.tilted=");Serial.println(cardata.tilt.tilted);
-	Serial.print("car.lights.is_below_threshold=");Serial.println(cardata.lights.is_below_threshold);
+	Serial.print("car.lights.is_below_threshold=");Serial.println(cardata.lights.is_below_threshold);*/
 	Serial.print("car.lights.level=");Serial.println(cardata.lights.level);
-	Serial.print("car.rc.throttle=");Serial.println(cardata.rc.throttle);*/
+	Serial.print("car.rc.throttle=");Serial.println(cardata.rc.throttle);
 	Serial.print("car.rc.steer=");Serial.println(cardata.rc.steer);
 	//Serial.print("car.parking.sensor_data=");Serial.println(cardata.parking.sensor_data[0]);*/
 	Serial.print("ctrl.height=");Serial.println(ctrldata.height);
@@ -181,18 +181,18 @@ ISR(TIMER5_COMPA_vect) {
 }
 
 // CHASSIS ENDSTOP TIMERS //
-
+/*
 ISR(INT2_vect) {
-	Chassis.maxHigh = true;
+	Chassis.maxHigh = PIN_READ(PIND, PD2);
 }
 
 ISR(INT3_vect) {
-	Chassis.maxLow = true;
-}
+	Chassis.maxLow = PIN_READ(PIND, PD3);
+}*/
 
 // CHASSIS REV SENSORS TIMER //
-
+/*
 ISR(TIMER1_CAPT_vect) {
 	Chassis.qRots += Chassis.direction;
 	Chassis.qRotsChange++;;
-}
+}*/
