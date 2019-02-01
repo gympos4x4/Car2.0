@@ -13,7 +13,7 @@
 #include "comm.h"
 #include "pindef.h"
 
-#define LI_TRESHOLD 60 // turn on lights below this value
+#define LI_TRESHOLD 450 // turn on lights below this value
 #define LI_BELOW_TRESHOLD(value) (value < LI_TRESHOLD)
 #define LI_BLINK_TIME 600
 #define LI_STR_R_TRESHOLD 10
