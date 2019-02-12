@@ -1,0 +1,12 @@
+// config.h
+// Author: Juraj Marcin
+
+
+#ifndef CONFIG_H_
+#define CONFIG_H_
+
+#define ESP_AP_SSID "ColumbaRacing"
+#define ESP_AP_PASS "samplePassword"
+
+
+#endif /* CONFIG_H_ */
