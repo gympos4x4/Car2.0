@@ -12,6 +12,7 @@
 
 #include "comm.h"
 #include "pindef.h"
+#include "config.h"
 
 #define ES_TIMEOUT 10
 
