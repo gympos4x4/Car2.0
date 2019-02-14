@@ -22,7 +22,7 @@ void _SpektrumRC::init() {
 	TIMSK5 = (1 << ICIE5) | (1 << OCIE5A);
 }
 
-void _SpektrumRC::loop(int8_t astrMode) {
+void _SpektrumRC::loop() {
 	if (astrMode < 0) {
 		OCR5A = str;
 	} else if (astrMode > 0) {

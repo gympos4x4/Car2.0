@@ -90,13 +90,46 @@ void _ESP8266::loop(ControllerData* data) {
 				#ifdef DEBUG
 				Serial.print("<DATA>");
 				#endif // DEBUG
-				for (uint8_t k = 0; k < sizeof(ControllerData); k++) {
+				while(!ESP_SERIAL.available());
+				uint8_t b0 = ESP_SERIAL.read();
+				#ifdef DEBUG
+				Serial.print(b0, HEX); Serial.print(' ');
+				#endif // DEBUG
+				switch (b0 & 0b1110000) {
+				case COMM_LIGHTS:
+					// TODO: LIGHTS
+					break;
+				case COMM_SPEKTRUM:
+					if (~COMM_MASK & b0 == 0b0000) {
+						SpektrumRC.astrMode = 1
+					} else if (~COMM_MASK & b0 == 0b0100) {
+						SpektrumRC.astrMode = 0
+					} else if (~COMM_MASK & b0 == 0b1000) {
+						SpektrumRC.astrMode = -1
+					}
+					break;
+				case COMM_TILT:
+					// TODO: TILT ALARM
+					break;
+				case COMM_CHASSIS:
+					if (b0 & 0b00011000 == 0b10000) {
+						Chassis.setHeight((b0 & 0b111) * 16);
+					} else if (b0 & 0b00011000 == 0b11000) {
+						Chassis.setHeight((b0 & 0b111) * -16);
+					}
+					break;
+				case COMM_PARKING:
+					// TODO: PARKING SENSORS
+					break;
+				}
+				/*for (uint8_t k = 0; k < sizeof(ControllerData); k++) {
 					while(!ESP_SERIAL.available());
 					((uint8_t*)data)[k] = ESP_SERIAL.read();
 					#ifdef DEBUG
 					Serial.print(((uint8_t*)data)[k], HEX); Serial.print(' ');
 					#endif // DEBUG
-				}
+				}*/
+				
 				#ifdef DEBUG
 				Serial.println("</DATA>");
 				#endif // DEBUG

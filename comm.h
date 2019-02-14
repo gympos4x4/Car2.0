@@ -3,6 +3,18 @@
 
 #include <stdint.h>
 
+#define COMM_MASK 0b11100000
+#define COMM_MASK_0 0b1
+#define COMM_MASK_1 0b11
+#define COMM_MASK_2 0b111
+#define COMM_MASK_3 0b1111
+#define COMM_MASK_4 0b11111
+#define COMM_LIGHTS 0b00100000
+#define COMM_SPEKTRUM 0b01000000
+#define COMM_TILT 0b01100000
+#define COMM_CHASSIS 0b10000000
+#define COMM_PARKING 0b10100000
+
 struct CarData
 {
 	//Misc car data

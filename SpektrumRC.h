@@ -27,11 +27,13 @@ class _SpektrumRC {
 	volatile uint8_t thrIH = 0;
 
 	volatile uint8_t pulseCounter = 0;
+	
+	volatile int8_t astrMode = 1;
 
 	public:
 	void init();
 	
-	void loop(int8_t astrMode);
+	void loop();
 	
 	void strInputInterr();
 	
