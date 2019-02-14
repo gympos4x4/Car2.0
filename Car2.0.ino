@@ -90,9 +90,7 @@ void setup() {
 
 void loop() {
 	TiltAlarm.loop();
-	SpektrumRC.loop(ctrldata.astr_mode);
-	if (ctrldata.height)
-		Chassis.setHeight(ctrldata.height);
+	SpektrumRC.loop();
 	ctrldata.height = 0;
 	Chassis.qRotsChange = 0;
 	
