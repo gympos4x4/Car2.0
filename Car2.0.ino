@@ -17,7 +17,7 @@
 #include "TiltAlarm.h"
 #include "Lights.h"
 //#include "ParkingSensors.h"
-//#include "Chassis.h"
+#include "Chassis.h"
 
 CarData cardata;
 ControllerData ctrldata;
@@ -36,7 +36,6 @@ void setup() {
 	Serial.begin(9600);
 	Serial.println("BOOTING COLOS...");
 	Serial.println("3 Devices Run ColOS");
-	Serial.println("Thankfully, not this one...");
 	#endif // DEBUG
 	
 	PIN_OUT(SPK_DIR, SPK_PIN);
@@ -59,7 +58,7 @@ void setup() {
 	Lights.init();
 	TiltAlarm.init();
 	//SpektrumRC.init();
-	//Chassis.init();
+	Chassis.init();
 	//ParkingSensors.init();
 	ESP8266.init();
 	
@@ -92,10 +91,9 @@ void setup() {
 void loop() {
 	TiltAlarm.loop();
 	//SpektrumRC.loop(ctrldata.astr_mode);
-	/*if (ctrldata.height)
+	if (ctrldata.height)
 		Chassis.setHeight(ctrldata.height);
 	ctrldata.height = 0;
-	Chassis.qRotsChange = 0;*/
 	
 	updateCarData();
 	Lights.loop(cardata.rc.steer);
