@@ -6,6 +6,7 @@
 _TiltAlarm TiltAlarm;
 
 void _TiltAlarm::init() {
+	enabled = 1;
 	Wire.begin();
 	Wire.beginTransmission(TA_MPU_ADDR);
 	Wire.write(TA_PWR_MGMT_1);  // PWR_MGMT_1 register
@@ -44,6 +45,7 @@ void _TiltAlarm::nextCheck() {
 }
 
 bool _TiltAlarm::check() {
+	if (enabled == 0) return false;
 	Wire.beginTransmission(TA_MPU_ADDR);
 	Wire.write(0x3B);  // starting with register 0x43 (GYRO_XOUT_H)
 	Wire.endTransmission(false);
@@ -66,4 +68,12 @@ void _TiltAlarm::signal(bool value) {
 void _TiltAlarm::updateCarData(CarData& cardata) {
 	cardata.tilt.degrees = rotZ - TA_ALERT_OFFSET;
 	cardata.tilt.tilted = tilted();
+}
+
+void _TiltAlarm::setLeftTreshold() {
+	//TODO
+}
+
+void _TiltAlarm::setRightTreshold() {
+	//TODO
 }

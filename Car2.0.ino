@@ -12,6 +12,7 @@
 #define NIMH_BASE 1.872f     //b
 #define NIMH_V_OFFSET 0.002f //c
 
+#include "eepromdef.h"
 #include "ESP8266.h"
 #include "SpektrumRC.h"
 #include "TiltAlarm.h"
@@ -32,11 +33,9 @@ volatile uint8_t adcPin = 0;
 volatile int16_t batteryPercentage = 0;
 
 void setup() {
-	#ifdef DEBUG
 	Serial.begin(9600);
 	Serial.println("BOOTING COLOS...");
 	Serial.println("3 Devices Run ColOS");
-	#endif // DEBUG
 	
 	PIN_OUT(SPK_DIR, SPK_PIN);
 	
@@ -46,6 +45,15 @@ void setup() {
 	PIN_WRITE_L(SPK_PRT, SPK_PIN);
 	
 	sei();
+	
+	// EEPROM CONFIG //
+	if (!EE_TEST) {
+		Serial.println("EEPROM RESET...");
+		EE_RESET;
+	}
+	if (EE_TEST) {
+		Serial.println("EEPROM OK!");
+	}
 	
 	// WATCHDOG CONFIG //
 	//WDTCSR = (1 << WDCE);
@@ -81,11 +89,7 @@ void setup() {
 	// START ADC CONVERSION //
 	startADCConversion(adcPins[adcPin]);
 	
-	#ifdef DEBUG
-	Serial.println("BOOT OK!");
-	#endif // DEBUG*/
-	
-	
+	Serial.println("BOOT OK!");	
 }
 
 void loop() {
@@ -106,7 +110,7 @@ void loop() {
 
 	#ifdef DEBUG
 	if (millis() > lastDebugSend + DEBUG_INTERVAL) {
-		sendDebug();
+		//sendDebug();
 		lastDebugSend = millis();
 	}
 	#endif // DEBUG
@@ -116,12 +120,12 @@ void sendDebug() {
 	Serial.println(millis());
 	Serial.print("car.battery_percentage=");Serial.println(cardata.battery_percentage);
 	Serial.print("car.tilt.degrees=");Serial.println(cardata.tilt.degrees);
-	/*Serial.print("car.tilt.tilted=");Serial.println(cardata.tilt.tilted);
-	Serial.print("car.lights.is_below_threshold=");Serial.println(cardata.lights.is_below_threshold);*/
+	//Serial.print("car.tilt.tilted=");Serial.println(cardata.tilt.tilted);
+	//Serial.print("car.lights.is_below_threshold=");Serial.println(cardata.lights.is_below_threshold);
 	Serial.print("car.lights.level=");Serial.println(cardata.lights.level);
 	Serial.print("car.rc.throttle=");Serial.println(cardata.rc.throttle);
 	Serial.print("car.rc.steer=");Serial.println(cardata.rc.steer);
-	//Serial.print("car.parking.sensor_data=");Serial.println(cardata.parking.sensor_data[0]);*/
+	//Serial.print("car.parking.sensor_data=");Serial.println(cardata.parking.sensor_data[0]);
 	Serial.print("ctrl.height=");Serial.println(ctrldata.height);
 	Serial.print("ctrl.astr_mode=");Serial.println(ctrldata.astr_mode);
 }
