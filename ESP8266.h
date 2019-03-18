@@ -13,6 +13,10 @@
 #include "comm.h"
 #include "pindef.h"
 #include "config.h"
+#include "SpektrumRC.h"
+#include "Chassis.h"
+#include "Lights.h"
+#include "TiltAlarm.h"
 
 #define ES_TIMEOUT 10
 

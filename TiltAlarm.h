@@ -34,6 +34,7 @@ class _TiltAlarm {
 	bool isTilted;
 	bool alreadyTilted;
 	uint16_t trueChecks;
+	uint8_t enabled;
 
 	public:
 
@@ -54,6 +55,10 @@ class _TiltAlarm {
 	int16_t getAngle(int16_t x, int16_t z);
 
 	void signal(bool value);
+	
+	void setRightTreshold();
+	
+	void setLeftTreshold();
 };
 
 extern _TiltAlarm TiltAlarm;

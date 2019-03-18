@@ -88,4 +88,5 @@ void _SpektrumRC::updateCarData(CarData& cardata) {
 		tmp = -128;
 	}
 	cardata.rc.throttle = tmp;
+	cardata.ctrl.astr_mode = astrMode;
 }

@@ -28,9 +28,9 @@ class _SpektrumRC {
 
 	volatile uint8_t pulseCounter = 0;
 	
-	volatile int8_t astrMode = 1;
-
 	public:
+	volatile int8_t astrMode = 1;
+	
 	void init();
 	
 	void loop();

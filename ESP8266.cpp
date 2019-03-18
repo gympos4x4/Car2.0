@@ -8,10 +8,7 @@
 _ESP8266 ESP8266;
 
 void _ESP8266::init() {
-	#ifdef DEBUG
-	Serial.begin(9600);
 	Serial.println("DECONFIGURING NETWORK...");
-	#endif // DEBUG
 	PIN_OUT(ESP_DIR, ESP_RST_PIN);
 	PIN_WRITE_H(ESP_PRT, ESP_RST_PIN);
 	PIN_OUT(ESP_DIR, ESP_EN_PIN);
@@ -26,7 +23,7 @@ void _ESP8266::init() {
 	serialFind("OK", 2);
 	cmd("AT+CWDHCP_CUR=2,1");
 	serialFind("OK", 2);
-	cmd("AT+CWSAP_CUR=\"" + ESP_AP_SSID + "\",\"" + ESP_AP_PASS + "\",13,3,1,0");
+	cmd(ESP_AP);
 	serialFind("OK", 2);
 	//cmd("AT+CIPMUX=1");
 	cmd("AT+CIPMUX=0");
@@ -36,9 +33,7 @@ void _ESP8266::init() {
 	serialFind("OK", 2);
 	cmd("AT+CIPDINFO=0");
 	serialFind("OK", 2);
-	#ifdef DEBUG
 	Serial.println("NETWORK CONFIGURATION DONE");
-	#endif // DEBUG
 	gotResponse = true;
 }
 
@@ -87,39 +82,65 @@ void _ESP8266::loop(ControllerData* data) {
 				Serial.println("PACKET TIMEOUT");
 				#endif // DEBUG
 			} else {
-				#ifdef DEBUG
-				Serial.print("<DATA>");
-				#endif // DEBUG
 				while(!ESP_SERIAL.available());
 				uint8_t b0 = ESP_SERIAL.read();
+				uint8_t b0sys = b0 & COMM_MASK_SYS;
+				uint8_t b0fun = b0 & COMM_MASK_FUN;
+				uint8_t b0val = b0 & COMM_MASK_VAL;
 				#ifdef DEBUG
+				Serial.print("<DATA>");
 				Serial.print(b0, HEX); Serial.print(' ');
+				Serial.println("</DATA>");
 				#endif // DEBUG
-				switch (b0 & 0b1110000) {
-				case COMM_LIGHTS:
-					// TODO: LIGHTS
+				switch (b0sys) {
+				case COMM_LXS:
+					if (b0fun == COMM_LXS_SETTHRESHOLD) {
+						Lights.setTreshold();
+						Serial.println("LXS_SETTHRESHOLD");
+					} else if (b0fun == COMM_LXS_BEAMS) {
+						Lights.beamsMode = b0val;
+						Serial.print("LXS_BEAMS ");
+						Serial.println(b0val);
+					}
+					// TODO: indicators
 					break;
-				case COMM_SPEKTRUM:
-					if (~COMM_MASK & b0 == 0b0000) {
-						SpektrumRC.astrMode = 1
-					} else if (~COMM_MASK & b0 == 0b0100) {
-						SpektrumRC.astrMode = 0
-					} else if (~COMM_MASK & b0 == 0b1000) {
-						SpektrumRC.astrMode = -1
+				case COMM_SRC:
+					if (b0 == COMM_SRC_MODE_NORMAL) {
+						SpektrumRC.astrMode = 1;
+						Serial.println("SRC_MODE_NORMAL");
+					} else if (b0 == COMM_SRC_MODE_LOCK) {
+						SpektrumRC.astrMode = 0;
+						Serial.println("SRC_MODE_LOCK");
+					} else if (b0 == COMM_SRC_MODE_CRAB) {
+						SpektrumRC.astrMode = -1;
+						Serial.println("SRC_MODE_CRAB");
+					}
+					// TODO: values
+					break;
+				case COMM_TAL:
+					if (b0fun == COMM_TAL_STATE) {
+						TiltAlarm.enabled = b0val;
+						Serial.print("TA_ENABLE ");
+						Serial.println(b0val);
+					}
+					// TODO: threshold
+					break;
+				case COMM_CHS:
+					if (b0fun == COMM_CHS_STEP_UP) {
+						Chassis.setHeight(b0val * 16);
+						Serial.print("CH_UP ");
+						Serial.println(b0val);
+					} else if (b0fun == COMM_CHS_STEP_DOWN) {
+						Chassis.setHeight(b0val * -16);
+						Serial.print("CH_DW");
+						Serial.println (b0val);
 					}
 					break;
-				case COMM_TILT:
-					// TODO: TILT ALARM
-					break;
-				case COMM_CHASSIS:
-					if (b0 & 0b00011000 == 0b10000) {
-						Chassis.setHeight((b0 & 0b111) * 16);
-					} else if (b0 & 0b00011000 == 0b11000) {
-						Chassis.setHeight((b0 & 0b111) * -16);
-					}
-					break;
-				case COMM_PARKING:
+				case COMM_PRS:
 					// TODO: PARKING SENSORS
+					break;
+				case COMM_CTR:
+					Serial.println("CTR_CONNECT");
 					break;
 				}
 				/*for (uint8_t k = 0; k < sizeof(ControllerData); k++) {
@@ -129,10 +150,6 @@ void _ESP8266::loop(ControllerData* data) {
 					Serial.print(((uint8_t*)data)[k], HEX); Serial.print(' ');
 					#endif // DEBUG
 				}*/
-				
-				#ifdef DEBUG
-				Serial.println("</DATA>");
-				#endif // DEBUG
 			}
 		}
 		if (i > 64) { Serial.println("broke"); break; }
