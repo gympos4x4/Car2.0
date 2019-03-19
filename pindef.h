@@ -70,7 +70,7 @@
 #define VBT_SENSE_PIN 0
 
 //ADC
-#define ADC_PIN_COUNT 6
+#define ADC_PIN_COUNT 2
 #define ADC_NEXT(ADCPIN) (ADCPIN + 1 >= ADC_PIN_COUNT ? 0 : ADCPIN + 1)
 
 //ESP8266
@@ -117,6 +117,70 @@
 #define CHS_PWM_DIR DDRB
 #define CHS_PWM_PORT PORTB
 #define CHS_PWM_PIN PB6
+
+#else
+
+#if BOARD_REV == 2
+
+#define VBT_SENSE_PIN 0
+
+//ADC
+#define ADC_PIN_COUNT 6
+#define ADC_NEXT(ADCPIN) (ADCPIN + 1 >= ADC_PIN_COUNT ? 0 : ADCPIN + 1)
+#define ADC_MX_PIN 1
+#define ADC_MX_DIR DDRK
+#define ADC_MX_PORT PORTK
+#define ADC_MX_EN_PIN PK0
+#define ADC_MX_SA_PIN PK1
+#define ADC_MX_SB_PIN PK2
+#define ADC_MX_SC_PIN PK3
+
+//ESP8266
+#define ESP_DIR DDRE
+#define ESP_PRT PORTE
+#define ESP_RST_PIN PE3
+#define ESP_EN_PIN PE2
+#define ESP_SERIAL Serial2
+
+//PARKINGSENSORS
+#define PRS_SENSOR_COUNT 4
+#define PRS_SENSOR0_PIN 16
+#define PRS_SENSOR1_PIN 17
+#define PRS_SENSOR2_PIN 18
+#define PRS_SENSOR3_PIN 19
+#define PRS_IR_DIR DDRJ
+#define PRS_IR_PRT PORTJ
+#define PRS_IR_PIN PJ7
+
+//SPEAKER
+#define SPK_DIR DDRA
+#define SPK_PRT PORTA
+#define SPK_PIN PA0
+
+//LIGHTS
+#define LXS_SENSOR_PIN 7
+#define LXS_DIR DDRF
+#define LXS_PORT PORTF
+#define LXS_C0_FRONT_PIN PF6
+#define LXS_C1_REAR_PIN PF5
+#define LXS_C2_LIF_PIN PF4
+#define LXS_C3_LIR_PIN PF3
+#define LXS_C4_RIF_PIN PF2
+#define LXS_C5_RIR_PIN PF1
+
+//SPEKTRUM RC
+#define SRC_ASTR_DIR DDRL
+#define SRC_ASTR_PIN PL3
+
+//CHASSIS
+#define CHS_DIR_DIR DDRG
+#define CHS_DIR_PORT PORTG
+#define CHS_DIR_PIN PG2
+#define CHS_PWM_DIR DDRB
+#define CHS_PWM_PORT PORTB
+#define CHS_PWM_PIN PB6
+
+#endif /* BOARD_REV */
 
 #endif /* BOARD_REV */
 
