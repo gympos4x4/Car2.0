@@ -125,7 +125,7 @@
 #define VBT_SENSE_PIN 0
 
 //ADC
-#define ADC_PIN_COUNT 6
+#define ADC_PIN_COUNT 8
 #define ADC_NEXT(ADCPIN) (ADCPIN + 1 >= ADC_PIN_COUNT ? 0 : ADCPIN + 1)
 #define ADC_MX_PIN 1
 #define ADC_MX_DIR DDRK
@@ -148,6 +148,8 @@
 #define PRS_SENSOR1_PIN 17
 #define PRS_SENSOR2_PIN 18
 #define PRS_SENSOR3_PIN 19
+#define PRS_SENSOR4_PIN 20
+#define PRS_SENSOR5_PIN 21
 #define PRS_IR_DIR DDRJ
 #define PRS_IR_PRT PORTJ
 #define PRS_IR_PIN PJ7
@@ -158,7 +160,7 @@
 #define SPK_PIN PA0
 
 //LIGHTS
-#define LXS_SENSOR_PIN 7
+#define LXS_SENSOR_PIN 22
 #define LXS_DIR DDRF
 #define LXS_PORT PORTF
 #define LXS_C0_FRONT_PIN PF6
