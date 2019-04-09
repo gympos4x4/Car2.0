@@ -4,7 +4,7 @@
 #ifndef _PINDEF_H_
 #define _PINDEF_H_
 
-#define BOARD_REV 0
+#define BOARD_REV 2
 
 #define PIN_OUT(DIR, PIN) (DIR |= _BV(PIN))
 #define PIN_IN(DIR, PIN) (DIR &= ~_BV(PIN))
@@ -127,13 +127,13 @@
 //ADC
 #define ADC_PIN_COUNT 8
 #define ADC_NEXT(ADCPIN) (ADCPIN + 1 >= ADC_PIN_COUNT ? 0 : ADCPIN + 1)
-#define ADC_MX_PIN 1
+#define ADC_MX_PIN 7
 #define ADC_MX_DIR DDRK
 #define ADC_MX_PORT PORTK
 #define ADC_MX_EN_PIN PK0
-#define ADC_MX_SA_PIN PK1
-#define ADC_MX_SB_PIN PK2
-#define ADC_MX_SC_PIN PK3
+#define ADC_MX_SA_PIN PK0
+#define ADC_MX_SB_PIN PK1
+#define ADC_MX_SC_PIN PK2
 
 //ESP8266
 #define ESP_DIR DDRE
@@ -143,7 +143,7 @@
 #define ESP_SERIAL Serial2
 
 //PARKINGSENSORS
-#define PRS_SENSOR_COUNT 4
+#define PRS_SENSOR_COUNT 6
 #define PRS_SENSOR0_PIN 16
 #define PRS_SENSOR1_PIN 17
 #define PRS_SENSOR2_PIN 18
@@ -175,12 +175,15 @@
 #define SRC_ASTR_PIN PL3
 
 //CHASSIS
-#define CHS_DIR_DIR DDRG
-#define CHS_DIR_PORT PORTG
-#define CHS_DIR_PIN PG2
-#define CHS_PWM_DIR DDRB
-#define CHS_PWM_PORT PORTB
-#define CHS_PWM_PIN PB6
+#define CHS_DIR DDRA
+#define CHS_PORT PORTA
+#define CHS_EN_PIN PA3
+#define CHS_SLP_PIN PA2
+#define CHS_RST_PIN PA1
+#define CHS_DIR_PIN PA4
+#define CHS_STP_DIR DDRE
+#define CHS_STP_PORT PORTE
+#define CHS_STP_PIN PE4
 
 #endif /* BOARD_REV */
 
