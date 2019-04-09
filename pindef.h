@@ -130,7 +130,6 @@
 #define ADC_MX_PIN 7
 #define ADC_MX_DIR DDRK
 #define ADC_MX_PORT PORTK
-#define ADC_MX_EN_PIN PK0
 #define ADC_MX_SA_PIN PK0
 #define ADC_MX_SB_PIN PK1
 #define ADC_MX_SC_PIN PK2
