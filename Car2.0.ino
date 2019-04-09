@@ -1,7 +1,6 @@
 // Car2.0.ino
 // Author: Juraj Marcin
 
-#define DEBUG
 #define SEND_INTERVAL 250
 #define DEBUG_INTERVAL 1000
 #define BAT_INTERVAL 5000
@@ -48,6 +47,9 @@ void setup() {
 	delay(400);
 	PIN_WRITE_L(SPK_PRT, SPK_PIN);
 	
+	PIN_OUT(DDRC, PC6);
+	PIN_WRITE_L(PORTC, PC6);
+	
 	sei();
 	
 	// EEPROM CONFIG //
@@ -80,7 +82,6 @@ void setup() {
 	PIN_OUT(ADC_MX_DIR, ADC_MX_SA_PIN);
 	PIN_OUT(ADC_MX_DIR, ADC_MX_SB_PIN);
 	PIN_OUT(ADC_MX_DIR, ADC_MX_SC_PIN);
-	PIN_WRITE_L(ADC_MX_PORT, ADC_MX_EN_PIN);
 	#endif
 	
 	// INIT ADC //
@@ -121,12 +122,11 @@ void loop() {
 	
 	ESP8266.loop(&ctrldata);
 
-	#ifdef DEBUG
 	if (millis() > lastDebugSend + DEBUG_INTERVAL) {
 		//sendDebug();
 		lastDebugSend = millis();
+		Serial.println(millis());
 	}
-	#endif // DEBUG
 }
 
 void sendDebug() {
@@ -207,14 +207,18 @@ ISR(TIMER5_COMPA_vect) {
 }
 
 // CHASSIS ENDSTOP TIMERS //
-/*
+
 ISR(INT2_vect) {
 	Chassis.maxHigh = PIN_READ(PIND, PD2);
+	Serial.println("INTERR2");
+	Serial.println(PIN_READ(PIND, PD2));
 }
 
 ISR(INT3_vect) {
 	Chassis.maxLow = PIN_READ(PIND, PD3);
-}*/
+	Serial.println("INTERR3");
+	Serial.println(PIN_READ(PIND, PD3));
+}
 
 // CHASSIS REV SENSORS TIMER //
 /*
