@@ -4,7 +4,7 @@
 #ifndef _PINDEF_H_
 #define _PINDEF_H_
 
-#define BOARD_REV 2
+#define BOARD_REV 1
 
 #define PIN_OUT(DIR, PIN) (DIR |= _BV(PIN))
 #define PIN_IN(DIR, PIN) (DIR &= ~_BV(PIN))
