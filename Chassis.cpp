@@ -7,7 +7,7 @@ _Chassis Chassis;
 
 void _Chassis::init() {
 	Serial.println("CONFIGURUNG CLARA...");
-	#if BOARD_REV == 2
+	/*#if BOARD_REV == 2
 	PIN_OUT(CHS_DIR, CHS_RST_PIN);
 	PIN_OUT(CHS_DIR, CHS_EN_PIN);
 	PIN_OUT(CHS_DIR, CHS_SLP_PIN);
@@ -18,15 +18,15 @@ void _Chassis::init() {
 	PIN_WRITE_L(CHS_PORT, CHS_EN_PIN);
 	PIN_WRITE_L(CHS_STP_PORT, CHS_STP_PIN);
 	PIN_WRITE_H(CHS_PORT, CHS_SLP_PIN);
-	#else
+	#else*/
 	PIN_OUT(DDRH, PH6);
 	TCCR2A = (1 << COM2B1) | (1 << WGM21) | (1 << WGM20);
 	TCCR2B = (1 << CS22) | (1 << CS21) | (1 << CS20);
 	OCR2B = 23;
-	#endif
+	/*#endif*/
 	// SET GROUND //
-	PIN_OUT(DDRC, PC6);
-	PIN_WRITE_L(PORTC, PC6);
+	PIN_OUT(DDRC, PC7);
+	PIN_WRITE_L(PORTC, PC7);
 	// SET ENDSTOP INPUTS, PULL UPS //
 	PIN_IN(DDRD, PD2);
 	PIN_IN(DDRD, PD3);
@@ -43,7 +43,7 @@ void _Chassis::init() {
 }
 
 void _Chassis::setHeight(int8_t height) {
-	#if BOARD_REV == 2
+	/*#if BOARD_REV == 2
 	if (height > 0) {
 		if (maxHigh) return;
 		direction = 1;
@@ -69,7 +69,7 @@ void _Chassis::setHeight(int8_t height) {
 		}
 		maxHigh = false;
 	}
-	#else
+	#else*/
 	if (height > 0) {
 		if (maxHigh) return;
 		direction = 1;
@@ -89,5 +89,5 @@ void _Chassis::setHeight(int8_t height) {
 	}
 	direction = 0;
 	qRotsChange = 0;
-	#endif
+	/*#endif*/
 }

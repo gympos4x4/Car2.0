@@ -4,7 +4,7 @@
 #ifndef _PINDEF_H_
 #define _PINDEF_H_
 
-#define BOARD_REV 1
+#define BOARD_REV 2
 
 #define PIN_OUT(DIR, PIN) (DIR |= _BV(PIN))
 #define PIN_IN(DIR, PIN) (DIR &= ~_BV(PIN))
@@ -162,12 +162,12 @@
 #define LXS_SENSOR_PIN 22
 #define LXS_DIR DDRF
 #define LXS_PORT PORTF
-#define LXS_C0_FRONT_PIN PF6
-#define LXS_C1_REAR_PIN PF5
-#define LXS_C2_LIF_PIN PF4
-#define LXS_C3_LIR_PIN PF3
-#define LXS_C4_RIF_PIN PF2
-#define LXS_C5_RIR_PIN PF1
+#define LXS_C0_FRONT_PIN PF1
+#define LXS_C1_REAR_PIN PF2
+#define LXS_C2_LIF_PIN PF3
+#define LXS_C3_LIR_PIN PF5
+#define LXS_C4_RIF_PIN PF4
+#define LXS_C5_RIR_PIN PF6
 
 //SPEKTRUM RC
 #define SRC_ASTR_DIR DDRL
