@@ -127,11 +127,11 @@ void _ESP8266::loop(ControllerData* data) {
 					break;
 				case COMM_CHS:
 					if (b0fun == COMM_CHS_STEP_UP) {
-						Chassis.setHeight(b0val * 16);
+						((uint8_t*)data)[0] = b0val * 16;
 						Serial.print("CH_UP ");
 						Serial.println(b0val);
 					} else if (b0fun == COMM_CHS_STEP_DOWN) {
-						Chassis.setHeight(b0val * -16);
+						((uint8_t*)data)[0] = b0val * -16;
 						Serial.print("CH_DW");
 						Serial.println (b0val);
 					}

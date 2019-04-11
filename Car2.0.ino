@@ -16,7 +16,7 @@
 #include "SpektrumRC.h"
 #include "TiltAlarm.h"
 #include "Lights.h"
-//#include "ParkingSensors.h"
+#include "ParkingSensors.h"
 #include "Chassis.h"
 
 CarData cardata;
@@ -47,8 +47,8 @@ void setup() {
 	delay(400);
 	PIN_WRITE_L(SPK_PRT, SPK_PIN);
 	
-	PIN_OUT(DDRC, PC6);
-	PIN_WRITE_L(PORTC, PC6);
+	PIN_OUT(DDRC, PC7);
+	PIN_WRITE_L(PORTC, PC7);
 	
 	sei();
 	
@@ -73,7 +73,7 @@ void setup() {
 	TiltAlarm.init();
 	SpektrumRC.init();
 	Chassis.init();
-	//ParkingSensors.init();
+	ParkingSensors.init();
 	ESP8266.init();
 	
 	#if BOARD_REV == 2
@@ -108,6 +108,8 @@ void setup() {
 void loop() {
 	TiltAlarm.loop();
 	SpektrumRC.loop();
+	if (ctrldata.height)
+		Chassis.setHeight(ctrldata.height);
 	ctrldata.height = 0;
 	Chassis.qRotsChange = 0;
 	
@@ -146,15 +148,16 @@ void updateCarData() {
 	cardata.battery_percentage = batteryPercentage;
 	Lights.updateCarData(cardata);
 	TiltAlarm.updateCarData(cardata);
-	//ParkingSensors.updateCarData(cardata);
+	ParkingSensors.updateCarData(cardata);
 	SpektrumRC.updateCarData(cardata);
 }
 
 void startADCConversion(uint8_t pin) {
 	if (pin > 15) {
 		#if BOARD_REV == 2
+		pin -= 16;
 		PIN_WRITE(ADC_MX_PORT, ADC_MX_SA_PIN, pin & 1);
-		PIN_WRITE(ADC_MX_PORT, ADC_MX_SB_PIN, pin & 0 << 1);
+		PIN_WRITE(ADC_MX_PORT, ADC_MX_SB_PIN, pin & 1 << 1);
 		PIN_WRITE(ADC_MX_PORT, ADC_MX_SC_PIN, pin & 1 << 2);
 		ADCSRB = (ADCSRB & ~(1 << MUX5)) | (ADC_MX_PIN & (1 << MUX5));
 		ADMUX = (1 << REFS0) | (ADC_MX_PIN & 0x07);
@@ -176,8 +179,8 @@ int8_t calculateBatteryPrecentage(float voltage)
 
 ISR(ADC_vect) {
 	int16_t reading = ADC;
-	if (adcPins[adcPin] >= 8 && adcPins[adcPin] <= 15) {
-		//ParkingSensors.interr(reading);
+	if (adcPins[adcPin] >= 16 && adcPins[adcPin] <= 21) {
+		ParkingSensors.interr(reading);
 	} else if (adcPins[adcPin] == LXS_SENSOR_PIN) {
 		Lights.interr(reading);
 	} else if (adcPins[adcPin] == VBT_SENSE_PIN) {
@@ -209,14 +212,10 @@ ISR(TIMER5_COMPA_vect) {
 
 ISR(INT2_vect) {
 	Chassis.maxHigh = PIN_READ(PIND, PD2);
-	Serial.println("INTERR2");
-	Serial.println(PIN_READ(PIND, PD2));
 }
 
 ISR(INT3_vect) {
 	Chassis.maxLow = PIN_READ(PIND, PD3);
-	Serial.println("INTERR3");
-	Serial.println(PIN_READ(PIND, PD3));
 }
 
 // CHASSIS REV SENSORS TIMER //

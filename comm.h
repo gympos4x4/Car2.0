@@ -69,7 +69,7 @@ struct CarData
 
 	//ParkingSensors
 	struct {
-		int8_t sensor_data[0];
+		int8_t sensor_data[6];
 	} parking;
 };
 

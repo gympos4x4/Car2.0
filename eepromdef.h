@@ -25,6 +25,6 @@ EE_WRITE16(LXS_ADDR, LXS_TRESHOLD)
 #define EE_CB1 0x16
 
 #define LXS_ADDR 2
-#define LXS_TRESHOLD 14
+#define LXS_TRESHOLD 157
 
 #endif /* EEPROMDEF_H_ */
