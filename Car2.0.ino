@@ -16,7 +16,7 @@
 #include "SpektrumRC.h"
 #include "TiltAlarm.h"
 #include "Lights.h"
-#include "ParkingSensors.h"
+//#include "ParkingSensors.h"
 #include "Chassis.h"
 
 CarData cardata;
@@ -27,7 +27,7 @@ uint64_t lastDebugSend = 0;
 volatile uint64_t lastBatCheck = 0;
 
 #if BOARD_REV == 2
-volatile uint8_t adcPins[ADC_PIN_COUNT] = {VBT_SENSE_PIN, LXS_SENSOR_PIN, PRS_SENSOR0_PIN, PRS_SENSOR1_PIN, PRS_SENSOR2_PIN, PRS_SENSOR3_PIN, PRS_SENSOR4_PIN, PRS_SENSOR5_PIN};
+volatile uint8_t adcPins[ADC_PIN_COUNT] = {VBT_SENSE_PIN, LXS_SENSOR_PIN/*, PRS_SENSOR0_PIN, PRS_SENSOR1_PIN, PRS_SENSOR2_PIN, PRS_SENSOR3_PIN, PRS_SENSOR4_PIN, PRS_SENSOR5_PIN*/};
 #else
 volatile uint8_t adcPins[ADC_PIN_COUNT] = {VBT_SENSE_PIN, LXS_SENSOR_PIN/*, PRS_SENSOR0_PIN, PRS_SENSOR1_PIN, PRS_SENSOR2_PIN, PRS_SENSOR3_PIN, PRS_SENSOR4_PIN, PRS_SENSOR3_PIN*/};
 #endif
@@ -73,7 +73,7 @@ void setup() {
 	TiltAlarm.init();
 	SpektrumRC.init();
 	Chassis.init();
-	ParkingSensors.init();
+	//ParkingSensors.init();
 	ESP8266.init();
 	
 	#if BOARD_REV == 2
@@ -148,7 +148,7 @@ void updateCarData() {
 	cardata.battery_percentage = batteryPercentage;
 	Lights.updateCarData(cardata);
 	TiltAlarm.updateCarData(cardata);
-	ParkingSensors.updateCarData(cardata);
+	//ParkingSensors.updateCarData(cardata);
 	SpektrumRC.updateCarData(cardata);
 }
 
@@ -180,7 +180,7 @@ int8_t calculateBatteryPrecentage(float voltage)
 ISR(ADC_vect) {
 	int16_t reading = ADC;
 	if (adcPins[adcPin] >= 16 && adcPins[adcPin] <= 21) {
-		ParkingSensors.interr(reading);
+		//ParkingSensors.interr(reading);
 	} else if (adcPins[adcPin] == LXS_SENSOR_PIN) {
 		Lights.interr(reading);
 	} else if (adcPins[adcPin] == VBT_SENSE_PIN) {
@@ -209,7 +209,7 @@ ISR(TIMER5_COMPA_vect) {
 }
 
 // CHASSIS ENDSTOP TIMERS //
-
+/*
 ISR(INT2_vect) {
 	Chassis.maxHigh = PIN_READ(PIND, PD2);
 }
@@ -217,7 +217,7 @@ ISR(INT2_vect) {
 ISR(INT3_vect) {
 	Chassis.maxLow = PIN_READ(PIND, PD3);
 }
-
+*/
 // CHASSIS REV SENSORS TIMER //
 /*
 ISR(TIMER1_CAPT_vect) {
